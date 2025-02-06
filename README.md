@@ -1,0 +1,1 @@
+# mage-knight-table
