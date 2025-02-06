@@ -1,0 +1,245 @@
+hr {
+    height: 1px;
+    background-color: #555;
+    border-top: 1px dotted #555;
+    margin: 0px;
+    border: 0px;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+#content {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 14pt;
+    margin-bottom: 1em;
+    background-color: 0xEEEEEE;
+}
+
+#reset-button {
+    position: relative;
+    float: right;
+    width: 24px;
+    height: 24px;
+}
+
+#character-select {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1em;
+}
+
+#character-select div {
+    color: white;
+    text-shadow: 1px 1px 2px #222;
+    font-weight: bold;
+    line-height: 228px;
+    text-align: center;
+    width: 128px;
+    height: 128px;
+    margin: 8px;
+}
+
+#char1 {
+    background-image: url("norowas.png");
+}
+
+#char2 {
+    background-image: url("tovak.png");
+}
+
+#char3 {
+    background-image: url("goldyx.png");
+}
+
+#char4 {
+    background-image: url("arythea.png");
+}
+
+#char5 {
+    background-image: url("wolfhawk.png");
+}
+
+#char6 {
+    background-image: url("braevalar.png");
+}
+
+#char7 {
+    background-image: url("krang.png");
+}
+
+/* portrait and inventory */
+#character-group {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+    justify-content: center;    
+}
+
+#portrait {
+    display: inline-flex;
+    width: 128px;
+    height: 128px;
+    margin-right: 20px;
+}
+
+#crystal-area {
+    width: 128px;
+    height: 128px;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: 1em;
+}
+
+#crystal-area div {
+    width: 64px;
+    height: 64px;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-weight: bold;
+    line-height: 90px;
+    text-align: center;
+    font-size: 16pt;
+}
+
+.red-crystal {
+    background-image: url("red.png");
+}
+
+.green-crystal {
+    background-image: url("green.png");
+}
+
+.blue-crystal {
+    background-image: url("blue.png");
+}
+
+.white-crystal {
+    background-image: url("white.png");
+}
+
+#card-area {
+    width: 100%;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#card-count {
+    font-size: 30pt;
+    font-weight: bold;
+    margin-top: .125em;
+    margin-bottom: .5em;
+}
+
+#card-history {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+/* turn container */
+#card-history div {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* history card */
+#card-history div div {
+    width: 23px;
+    height: 32px;
+    display: inline-block;
+    flex: 0 0 auto;
+    margin: 0px;
+}
+
+.red-card {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("red-card.png");
+}
+
+.green-card {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("green-card.png");
+}
+
+.blue-card {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("blue-card.png");
+}
+
+.white-card {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("white-card.png");
+}
+
+.spacer-card {
+    width: 10px !important;
+}
+
+#button-area {
+    display: flex;
+    height: 32px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+#button-area button {
+    flex: 1 0 auto;
+    height: 100%;
+}
+
+#new-crystal-select {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#new-crystal-select div {
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    font-size: 16pt;
+}
+
+#new-card-select {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#new-card-select div {
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    font-size: 16pt;
+}

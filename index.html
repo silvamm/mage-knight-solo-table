@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="description" content="Mage Knight Dummy Player">
+    <meta name="keywords" content="mage,knight,dummy,player,app,solo,cooperative">
+    <link rel="apple-touch-icon" href="content/icon.png"/>
+    <link rel="icon" href="content/icon.png"/>
+    <meta charset="UTF-8">
+    <title>Mage Knight Solo Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .can-active {
+        cursor: pointer;
+    }
+</style>
+<body class="bg-dark">
+<h1></h1>
+<div class="container text-center">
+    <div class="row mb-3">
+        <div class="col">
+            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#referencesOffcanvas" aria-controls="referencesOffcanvas">
+                References
+            </button>
+            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#logsOffcanvas" aria-controls="logsOffcanvas">
+                Logs
+            </button>
+            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#dummyPlayerOffcanvas" aria-controls="dummyPlayerOffcanvas">
+                Dummy Player
+            </button>
+
+            <div class="offcanvas offcanvas-bottom bg-dark text-white" tabindex="-1" id="logsOffcanvas"
+                 aria-labelledby="logsOffcanvasLabel">
+                <div class="offcanvas-body">
+                    <div id="logs"></div>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end bg-dark" style="width: 30%" tabindex="-1" id="dummyPlayerOffcanvas"
+                 aria-labelledby="dummyPlayerOffcanvasLabel">
+                <div class="offcanvas-body">
+                    <iframe src="dummy_player.html" style="width: 100%; height: 100%;"></iframe>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-start text-start bg-dark" style="width: 37%" tabindex="-1"
+                 id="referencesOffcanvas"
+                 aria-labelledby="referencesOffcanvasLabel">
+                <div id="canvasBody" class="offcanvas-body ">
+                    <div class="accordion accordion-flush " id="accordionReferences">
+                        <script>
+                            let references = ['ancient_ruins', 'city', 'draconum', 'dungeon', 'end_turn', 'glade', 'grounds', 'keep', 'mage_tower', 'mines', 'monastery', 'monster_den', 'orcs', 'round', 'tomb', 'village']
+                            let i = 1
+                            references.forEach(reference => {
+                                reference_without_underscore = reference.replace('_', ' ')
+                                capitalize = reference_without_underscore.charAt(0).toUpperCase() + reference_without_underscore.slice(1)
+                                document.write(`
+                                  <div class="accordion-item bg-dark">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                                ${capitalize}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
+                                            <div class="accordion-body">
+                                                <img src="references/${reference}.png" class="img-fluid" alt="">
+                                            </div>
+                                        </div>
+                                  </div>
+                                `)
+
+                                i++
+                            })
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-dark table-borderless">
+                    <thead>
+                    <tr>
+                        <th colspan="1" style="font-size: 50px">☼</th>
+                        <th colspan="1" style="font-size: 50px">☽</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="day-score">0</td>
+                        <td id="night-score">0</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table id="day-move-table" class="table table-dark table-borderless">
+                                <thead>
+                                <tr>
+                                    <th>Plains</th>
+                                    <th>Hills</th>
+                                    <th>Forest</th>
+                                    <th>Desert</th>
+                                    <th>Wastelands</th>
+                                    <th>Marsh</th>
+                                    <th>City</th>
+                                    <th>Mountain</th>
+                                    <th>Water</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>X</td>
+                                    <td>X</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table id="night-move-table" class="table table-dark table-borderless">
+                                <thead>
+                                <tr>
+                                    <th>Plains</th>
+                                    <th>Hills</th>
+                                    <th>Forest</th>
+                                    <th>Desert</th>
+                                    <th>Wastelands</th>
+                                    <th>Marsh</th>
+                                    <th>City</th>
+                                    <th>Mountain</th>
+                                    <th>Water</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>X</td>
+                                    <td>X</td>
+                                </tr>
+                            </table>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr class="text-white"/>
+            <div class="table-responsive">
+                <table class="table table-dark table-borderless">
+                    <thead>
+                    <tr>
+                        <th colspan="99">Reputation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="align-center">
+                        <td colspan="99">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-dark rounded-0"
+                                        onclick="ui.updateReputation(-1)">-1
+                                </button>
+                                <button type="button" class="btn btn-dark rounded-0"
+                                        onclick="ui.updateReputation(+1)">+1
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <script>
+                        document.write('<tr>');
+                        let numbers = ["X", "- 5", "- 3", "- 2", "- 1", "- 1", "0", "0", "0", "+ 1", "+ 1", "+ 2", "+ 2", "+ 3", "+ 5"];
+                        let ids = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+                        for (let i = 0; i < numbers.length; i++) {
+                            document.write(`<td class="can-active" id="${ids[i]}" onclick="ui.markReputationTracker(${ids[i]})">${numbers[i]}</td>`);
+                        }
+                        document.write('</tr>');
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+            <hr class="text-white"/>
+            <div class="table-responsive">
+                <table class="table table-dark table-borderless">
+                    <thead>
+                    <tr>
+                        <th colspan="99">Fame</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="align-center">
+                        <td colspan="99">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+2)">
+                                    +2
+                                </button>
+                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+3)">
+                                    +3
+                                </button>
+                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+4)">
+                                    +4
+                                </button>
+                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+5)">
+                                    +5
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <script>
+                        let number = 0;
+                        for (let row = 1; number <= 119; row++) {
+                            document.write('<tr>');
+                            if (row % 2 === 1) {
+                                document.write('<td style="font-size: 20px" ">⬡</td>');
+                            } else {
+                                document.write('<td style="font-size: 20px">▯▭</td>');
+                            }
+                            for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
+                                document.write(`<td class="can-active" id="${number}" onclick="ui.markFameTracker(${number})">${number}</td>`);
+                                number++;
+                            }
+                            document.write('</tr>');
+                        }
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    let Strings = Object.freeze({
+        StorageAppStateKey: "app-state"
+    });
+
+    function supports_html5_storage() {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function UIContext() {
+
+        this.emptyState = {
+            night: {
+                active: false,
+                count: 0
+            },
+            day: {
+                active: true,
+                count: 1
+            },
+            reputation: 0,
+            fame: 0,
+            logs: ""
+        }
+
+        this.state = null
+
+        this.initialize = function (state) {
+
+            this.state = state
+
+            console.log(this.state.toString());
+            this.markReputationTracker(this.state.reputation)
+            this.markFameTracker(this.state.fame)
+
+            if(this.state.day.active){
+                this.day()
+            }
+
+            if(this.state.night.active){
+                this.night()
+            }
+        }
+
+        function getSavedState() {
+            if (!supports_html5_storage())
+                return null;
+
+            let saved = JSON.parse(localStorage.getItem(Strings.StorageAppStateKey));
+
+            if (saved === undefined)
+                return null;
+
+            let app = new AppState();
+            for (let prop in saved)
+                app[prop] = saved[prop];
+
+            console.log("Loaded App State: " + app.toString());
+            return app;
+        }
+
+        this.reloadFromSavedState = function () {
+            let saved = getSavedState();
+        }
+
+        this.log = function(message) {
+            const date = new Date();
+            const logs = document.getElementById('logs');
+            logs.insertAdjacentHTML('afterbegin', `<p>${date.toLocaleString()} - ${message}</p>`);
+        }
+
+        this.markReputationTracker = function (id) {
+            let currentReputationNumber = null
+            if (this.state.reputation) {
+                currentReputationNumber = document.querySelector(`td[onclick="ui.markReputationTracker(${this.state.reputation})"]`);
+                currentReputationNumber.classList.remove("bg-white", "text-dark");
+            }
+
+            const newReputationNumber = document.querySelector(`td[onclick="ui.markReputationTracker(${id})"]`);
+
+            if (currentReputationNumber) {
+                let incresesOrDecreses = parseInt(newReputationNumber.id) < parseInt(currentReputationNumber.id) ? '↓' : '↑';
+                this.log(`Reputation: ${currentReputationNumber.textContent} → ${newReputationNumber.textContent} ${incresesOrDecreses}`)
+            }
+
+            if (newReputationNumber) {
+                newReputationNumber.classList.add("bg-white", "text-dark")
+                this.state.reputation = newReputationNumber.id;
+            }
+        }
+
+        this.markFameTracker = function(number) {
+            let currentFameNumber = null
+            if (this.state.fame) {
+                currentFameNumber = document.querySelector(`td[onclick="ui.markFameTracker(${this.state.fame})"]`);
+                currentFameNumber.classList.remove("bg-white", "text-dark");
+            }
+
+            const newFameNumber = document.querySelector(`td[onclick="ui.markFameTracker(${number})"]`);
+            if (currentFameNumber) {
+                this.log(`Fame: ${currentFameNumber.textContent} → ${newFameNumber.textContent}`)
+            }
+            if (newFameNumber) {
+                newFameNumber.classList.add("bg-white", "text-dark")
+                this.state.fame = newFameNumber.id;
+            }
+        }
+
+        document.querySelectorAll('td .can-active').forEach(td => {
+            td.addEventListener('mouseover', function() {
+                this.classList.add('table-active');
+            });
+            td.addEventListener('mouseout', function() {
+                this.classList.remove('table-active');
+            });
+            td.addEventListener('click', function() {
+                this.classList.remove('table-active');
+            });
+        });
+
+        this.night = function() {
+            document.getElementById('day-score').classList.remove('bg-white');
+            this.dayMoveTable(false);
+
+            document.getElementById('night-score').classList.add('bg-white', 'text-dark');
+            document.getElementById('night-score').textContent = this.state.night.count
+            this.nightMoveTable();
+            this.log('The Night has begun')
+        }
+
+        this.day = function() {
+            document.getElementById('night-score').classList.remove('bg-white');
+            this.nightMoveTable(false);
+
+            document.getElementById('day-score').classList.add('bg-white', 'text-dark');
+            document.getElementById('day-score').textContent = this.state.day.count
+            this.dayMoveTable();
+            this.log('The Day has begun')
+
+        }
+
+        this.dayMoveTable = function(active = true) {
+            document.querySelectorAll('#day-move-table td, #day-move-table th').forEach(element => {
+                if (active) {
+                    element.classList.remove('text-dark');
+                } else {
+                    element.classList.add('text-dark');
+                }
+
+            });
+        }
+
+        this.nightMoveTable = function(active = true) {
+            document.querySelectorAll('#night-move-table td, #night-move-table th').forEach(element => {
+                if (active) {
+                    element.classList.remove('text-dark');
+                } else {
+                    element.classList.add('text-dark');
+                }
+            });
+        }
+
+        this.updateReputation = function(number) {
+            this.markReputationTracker(Number(this.state.reputation) + number)
+        }
+
+        this.updateFame = function(number) {
+            this.markFameTracker(Number(this.state.fame) + number)
+        }
+
+    }
+
+    function AppState(state) {
+
+        this.state = state;
+
+        this.toString = function () {
+            return JSON.stringify(this);
+        }
+
+        this.save = function () {
+            if (supports_html5_storage())
+                localStorage.setItem(Strings.StorageAppStateKey, this.toString());
+        }
+
+    }
+
+
+
+    $(".accordion-item").on("shown.bs.collapse", function () {
+        var selected = $(this);
+        var offcanvas = $('#canvasBody');
+        if (selected.offset().top + selected.height() > offcanvas.offset().top + offcanvas.height()) {
+            var scrollTop = (selected.offset().top - offcanvas.offset().top + offcanvas.scrollTop()) - 10;
+            offcanvas.animate({scrollTop: scrollTop}, 500);
+        }
+    });
+
+    let ui = new UIContext()
+    ui.initialize(ui.emptyState)
+
+</script>
+</body>
+</html>

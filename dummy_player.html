@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="description" content="Mage Knight Dummy Player">
+    <meta name="keywords" content="mage,knight,dummy,player,app,solo,cooperative">
+    <link rel="apple-touch-icon" href="content/icon.png"/>
+    <link rel="icon" href="content/icon.png"/>
+    <link rel="stylesheet" type="text/css" href="../../MageKnightTable/content/mk-dummy.css"/>
+    <script type="text/javascript" src="../../MageKnightTable/code/mk-dummy.js"></script>
+    <title>Dummy Player</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-dark text-white">
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div id="reset-button" data-bs-theme="dark">
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+            <div id="screen1">
+                <div>Select a character</div>
+                <div id="character-select">
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char1" title="Norowas">Norowas</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char2" title="Tovak">Tovak</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char3" title="Goldyx">Goldyx</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char4" title="Arythea">Arythea</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char5" title="Wolfhawk">Wolfhawk</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char6" title="Braevalar">Braevalar</div>
+                    </button>
+                    <button class="btn btn-dark rounded-0">
+                        <div id="char7" title="Krang">Krang</div>
+                    </button>
+                </div>
+            </div>
+            <div id="screen2">
+                <h1 id="character-name">Character</h1>
+                <div id="character-group">
+                    <div id="portrait"></div>
+                    <div id="crystal-area">
+                        <div id="red-count" class="red-crystal" title="Red Crystals">0</div>
+                        <div id="green-count" class="green-crystal" title="Green Crystals">0</div>
+                        <div id="blue-count" class="blue-crystal" title="Blue Crystals">0</div>
+                        <div id="white-count" class="white-crystal" title="White Crystals">0</div>
+                    </div>
+                </div>
+                <hr/>
+                <div id="card-area">
+                    <div>Cards Remaining</div>
+                    <div id="card-count">0</div>
+                    <div id="card-history">
+                        <div>
+                            <div class="red-card"></div>
+                            <div class="green-card"></div>
+                        </div>
+                        <div>
+                            <div class="blue-card"></div>
+                            <div class="white-card"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button class="btn btn-dark rounded-0" id="play-turn-button" title="Play Turn">PLAY TURN</button>
+                    <button class="btn btn-dark rounded-0" id="end-round-button" title="End Round">END ROUND</button>
+                </div>
+            </div>
+            <div id="screen3">
+                <h1>Add Mana Crystal</h1>
+                <div>Choose a crystal to add.</div>
+                <div id="new-crystal-select">
+                    <div id="new-mana-red" class="btn btn-dark rounded-0 red-crystal" title="Red"></div>
+                    <div id="new-mana-green" class="btn btn-dark rounded-0 green-crystal" title="Green"></div>
+                    <div id="new-mana-blue" class="btn btn-dark rounded-0 blue-crystal" title="Blue"></div>
+                    <div id="new-mana-white" class="btn btn-dark rounded-0 white-crystal" title="White"></div>
+                </div>
+            </div>
+            <div id="screen4">
+                <h1>Add New Card</h1>
+                <div>Choose a card to add.</div>
+                <div id="new-card-select">
+                    <div id="new-card-red" class="btn btn-dark rounded-0 red-card" title="Red"></div>
+                    <div id="new-card-green" class="btn btn-dark rounded-0 green-card" title="Green"></div>
+                    <div id="new-card-blue" class="btn btn-dark rounded-0 blue-card" title="Blue"></div>
+                    <div id="new-card-white" class="btn btn-dark rounded-0 white-card" title="White"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    let context = new UIContext();
+</script>
+</body>
+</html>
