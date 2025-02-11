@@ -64,19 +64,19 @@
                                 reference_without_underscore = reference.replace('_', ' ')
                                 capitalize = reference_without_underscore.charAt(0).toUpperCase() + reference_without_underscore.slice(1)
                                 document.write(`
-                                  <div class="accordion-item bg-dark">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
-                                                ${capitalize}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
-                                            <div class="accordion-body">
-                                                <img src="references/${reference}.png" class="img-fluid" alt="">
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                                    ${capitalize}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
                                             </div>
-                                        </div>
-                                  </div>
-                                `)
+                                      </div>
+                                    `)
 
                                 i++
                             })
@@ -91,10 +91,10 @@
             <div class="table-responsive">
                 <table class="table table-dark table-borderless">
                     <thead>
-                        <tr>
-                            <th scope="col" class="col-1" style="font-size: 25px">☼</th>
-                            <th scope="col" class="col-1" style="font-size: 25px">☽</th>
-                        </tr>
+                    <tr>
+                        <th scope="col" class="col-1" style="font-size: 25px">☼</th>
+                        <th scope="col" class="col-1" style="font-size: 25px">☽</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <tr>
@@ -170,21 +170,21 @@
                     <script>
                         document.write('<tr>');
                         let reputations = [
-                            { text: "X", value: -7 },
-                            { text: "-5", value: -6 },
-                            { text: "-3", value: -5 },
-                            { text: "-2", value: -4 },
-                            { text: "-1", value: -3 },
-                            { text: "-1", value: -2 },
-                            { text: "0", value: -1 },
-                            { text: "0", value: 0 },
-                            { text: "0", value: 1 },
-                            { text: "+1", value: 2 },
-                            { text: "+1", value: 3 },
-                            { text: "+2", value: 4 },
-                            { text: "+2", value: 5 },
-                            { text: "+3", value: 6 },
-                            { text: "+5", value: 7 }
+                            {text: "X", value: -7},
+                            {text: "-5", value: -6},
+                            {text: "-3", value: -5},
+                            {text: "-2", value: -4},
+                            {text: "-1", value: -3},
+                            {text: "-1", value: -2},
+                            {text: "0", value: -1},
+                            {text: "0", value: 0},
+                            {text: "0", value: 1},
+                            {text: "+1", value: 2},
+                            {text: "+1", value: 3},
+                            {text: "+2", value: 4},
+                            {text: "+2", value: 5},
+                            {text: "+3", value: 6},
+                            {text: "+5", value: 7}
                         ];
                         for (let i = 0; i < reputations.length; i++) {
                             document.write(`<td class="can-active" data-value="${reputations[i].value}" id="reputation|${reputations[i].value}" onclick="ui.markReputationTracker(this)">${reputations[i].text}</td>`);
@@ -192,7 +192,8 @@
                         document.write('</tr>');
                     </script>
                     </tbody>
-                </table>x
+                </table>
+                x
             </div>
 
             <hr class="text-white"/>
@@ -251,7 +252,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-</body>
 <script>
     let Strings = Object.freeze({
         StorageAppStateKey: "app-state"
@@ -279,7 +279,7 @@
             reputation: {
                 text: "0",
                 value: 0
-            } ,
+            },
             fame: 0,
             logs: ""
         }
@@ -300,10 +300,10 @@
 
             this.state = state
 
-            if(this.state.day.active)
+            if (this.state.day.active)
                 this.day()
 
-            if(this.state.night.active)
+            if (this.state.night.active)
                 this.night()
 
             this.currentReputation = document.getElementById(`reputation|${this.state.reputation.value}`)
@@ -313,13 +313,13 @@
             this.markFameTracker(this.currentFame)
 
             document.querySelectorAll('td .can-active').forEach(td => {
-                td.addEventListener('mouseover', function() {
+                td.addEventListener('mouseover', function () {
                     this.classList.add('table-active');
                 });
-                td.addEventListener('mouseout', function() {
+                td.addEventListener('mouseout', function () {
                     this.classList.remove('table-active');
                 });
-                td.addEventListener('click', function() {
+                td.addEventListener('click', function () {
                     this.classList.remove('table-active');
                 });
             });
@@ -335,28 +335,28 @@
 
         }
 
-        this.log = function(message) {
+        this.log = function (message) {
             this.logs.insertAdjacentHTML('afterbegin', `<p>${this.date.toLocaleString()} - ${message}</p>`);
         }
 
         this.markReputationTracker = function (newReputationElement) {
             this.addHighlight(newReputationElement)
 
-            if(this.currentReputation === newReputationElement) return
+            if (this.currentReputation === newReputationElement) return
 
             this.removeHighlight(this.currentReputation)
 
             let increasesOrDecreases = parseInt(newReputationElement.dataset.value) < parseInt(this.currentReputation.dataset.value) ? '↓' : '↑';
             this.log(`Reputation: ${this.currentReputation.textContent} → ${newReputationElement.textContent} ${increasesOrDecreases}`)
 
-            this.state.reputation = { text: newReputationElement.textContent, value: newReputationElement.dataset.value };
+            this.state.reputation = {text: newReputationElement.textContent, value: newReputationElement.dataset.value};
             this.currentReputation = newReputationElement
         }
 
-        this.markFameTracker = function(newFameElement) {
+        this.markFameTracker = function (newFameElement) {
             this.addHighlight(newFameElement)
 
-            if(this.currentFame === newFameElement) return
+            if (this.currentFame === newFameElement) return
 
             this.removeHighlight(this.currentFame)
 
@@ -366,30 +366,30 @@
             this.currentFame = newFameElement
         }
 
-        this.show = function(element){
-            if(element != null){
+        this.show = function (element) {
+            if (element != null) {
                 element.classList.remove("d-none")
             }
         }
 
-        this.hide = function(element){
-            if(element != null){
+        this.hide = function (element) {
+            if (element != null) {
                 element.classList.add("d-none")
             }
         }
 
-        this.addHighlight = function(element){
-            if(element != null){
+        this.addHighlight = function (element) {
+            if (element != null) {
                 element.classList.add("bg-white", "text-dark")
             }
         }
-        this.removeHighlight = function(element){
-            if(element != null){
+        this.removeHighlight = function (element) {
+            if (element != null) {
                 element.classList.remove("bg-white", "text-dark")
             }
         }
 
-        this.night = function() {
+        this.night = function () {
             this.addHighlight(this.nightScore)
             this.removeHighlight(this.dayScore)
 
@@ -399,7 +399,7 @@
             this.log('The Night has begun')
         }
 
-        this.day = function() {
+        this.day = function () {
             this.addHighlight(this.dayScore)
             this.removeHighlight(this.nightScore)
 
@@ -410,20 +410,20 @@
 
         }
 
-        this.updateReputation = function(number) {
+        this.updateReputation = function (number) {
             let newReputationNumber = Number(this.state.reputation.value) + number
             let newReputation = document.getElementById(`reputation|${newReputationNumber}`)
 
-            if(newReputation === null) return
+            if (newReputation === null) return
 
             this.markReputationTracker(newReputation)
         }
 
-        this.updateFame = function(number) {
+        this.updateFame = function (number) {
             let newFameNumber = Number(this.state.fame) + number
             let newFame = document.getElementById(`fame|${newFameNumber}`)
 
-            if(newFame === null) return
+            if (newFame === null) return
 
             this.markFameTracker(newFame)
         }
