@@ -340,9 +340,6 @@
         }
 
         this.markReputationTracker = function (newReputationElement) {
-            console.log(newReputationElement)
-            console.log(this.currentReputation)
-
             this.addHighlight(newReputationElement)
 
             if(this.currentReputation === newReputationElement) return
@@ -352,7 +349,8 @@
             let increasesOrDecreases = parseInt(newReputationElement.dataset.value) < parseInt(this.currentReputation.dataset.value) ? '↓' : '↑';
             this.log(`Reputation: ${this.currentReputation.textContent} → ${newReputationElement.textContent} ${increasesOrDecreases}`)
 
-            this.state.reputation = { text: newReputationElement.textContent, value: newReputationElement.value };
+            this.state.reputation = { text: newReputationElement.textContent, value: newReputationElement.dataset.value };
+            console.log(this.state.reputation)
             this.currentReputation = newReputationElement
         }
 
@@ -414,11 +412,21 @@
         }
 
         this.updateReputation = function(number) {
-            this.markReputationTracker(Number(this.state.reputation) + number)
+            let newReputationNumber = Number(this.state.reputation.value) + number
+            let newReputation = document.getElementById(`reputation|${newReputationNumber}`)
+
+            if(newReputation === null) return
+
+            this.markReputationTracker(newReputation)
         }
 
         this.updateFame = function(number) {
-            this.markFameTracker(Number(this.state.fame) + number)
+            let newFameNumber = Number(this.state.fame) + number
+            let newFame = document.getElementById(`fame|${newFameNumber}`)
+
+            if(newFame === null) return
+
+            this.markFameTracker(newFame)
         }
 
     }
