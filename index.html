@@ -12,6 +12,7 @@
     <title>Mage Knight Solo Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../mage-knight-table/content/mk-dummy.css"/>
 </head>
 <style>
     .can-active {
@@ -24,8 +25,8 @@
 <div class="container text-center">
     <div class="row mb-3">
         <div class="col">
-            <button onclick="ui.night()">Night</button>
-            <button onclick="ui.day()">Day</button>
+            <button onclick="app.night()">Night</button>
+            <button onclick="app.day()">Day</button>
             <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#referencesOffcanvas" aria-controls="referencesOffcanvas">
                 References
@@ -49,7 +50,92 @@
             <div class="offcanvas offcanvas-end bg-dark" style="width: 30%" tabindex="-1" id="dummyPlayerOffcanvas"
                  aria-labelledby="dummyPlayerOffcanvasLabel">
                 <div class="offcanvas-body">
-                    <iframe src="dummy_player.html" style="width: 100%; height: 100%;"></iframe>
+                    <div class="row text-white">
+                        <div class="col">
+                            <div id="reset-button" data-bs-theme="dark">
+                                <button type="button" class="btn-close" aria-label="Close"></button>
+                            </div>
+                            <div id="screen1">
+                                <div>Select a character</div>
+                                <div id="character-select">
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char1" title="Norowas">Norowas</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char2" title="Tovak">Tovak</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char3" title="Goldyx">Goldyx</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char4" title="Arythea">Arythea</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char5" title="Wolfhawk">Wolfhawk</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char6" title="Braevalar">Braevalar</div>
+                                    </button>
+                                    <button class="btn btn-dark rounded-0">
+                                        <div id="char7" title="Krang">Krang</div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="screen2">
+                                <h1 id="character-name">Character</h1>
+                                <div id="character-group">
+                                    <div id="portrait"></div>
+                                    <div id="crystal-area">
+                                        <div id="red-count" class="red-crystal" title="Red Crystals">0</div>
+                                        <div id="green-count" class="green-crystal" title="Green Crystals">0</div>
+                                        <div id="blue-count" class="blue-crystal" title="Blue Crystals">0</div>
+                                        <div id="white-count" class="white-crystal" title="White Crystals">0</div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div id="card-area">
+                                    <div>Cards Remaining</div>
+                                    <div id="card-count">0</div>
+                                    <div id="card-history">
+                                        <div>
+                                            <div class="red-card"></div>
+                                            <div class="green-card"></div>
+                                        </div>
+                                        <div>
+                                            <div class="blue-card"></div>
+                                            <div class="white-card"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button class="btn btn-dark rounded-0" id="play-turn-button" title="Play Turn">PLAY TURN</button>
+                                    <button class="btn btn-dark rounded-0" id="end-round-button" title="End Round">END ROUND</button>
+                                </div>
+                            </div>
+                            <div id="screen3">
+                                <h1>Add Mana Crystal</h1>
+                                <div>Choose a crystal to add.</div>
+                                <div id="new-crystal-select">
+                                    <div id="new-mana-red" class="btn btn-dark rounded-0 red-crystal" title="Red"></div>
+                                    <div id="new-mana-green" class="btn btn-dark rounded-0 green-crystal" title="Green"></div>
+                                    <div id="new-mana-blue" class="btn btn-dark rounded-0 blue-crystal" title="Blue"></div>
+                                    <div id="new-mana-white" class="btn btn-dark rounded-0 white-crystal" title="White"></div>
+                                </div>
+                            </div>
+                            <div id="screen4">
+                                <h1>Add New Card</h1>
+                                <div>Choose a card to add.</div>
+                                <div id="new-card-select">
+                                    <div id="new-card-red" class="btn btn-dark rounded-0 red-card" title="Red"></div>
+                                    <div id="new-card-green" class="btn btn-dark rounded-0 green-card" title="Green"></div>
+                                    <div id="new-card-blue" class="btn btn-dark rounded-0 blue-card" title="Blue"></div>
+                                    <div id="new-card-white" class="btn btn-dark rounded-0 white-card" title="White"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <iframe src="dummy_player.html" style="width: 100%; height: 100%;"></iframe> -->
                 </div>
             </div>
 
@@ -159,10 +245,10 @@
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
                                 <button type="button" class="btn btn-dark rounded-0"
-                                        onclick="ui.updateReputation(-1)">-1
+                                        onclick="app.updateReputation(-1)">-1
                                 </button>
                                 <button type="button" class="btn btn-dark rounded-0"
-                                        onclick="ui.updateReputation(+1)">+1
+                                        onclick="app.updateReputation(+1)">+1
                                 </button>
                             </div>
                         </td>
@@ -187,7 +273,7 @@
                             {text: "+5", value: 7}
                         ];
                         for (let i = 0; i < reputations.length; i++) {
-                            document.write(`<td class="can-active" style="width: 6.6%" data-value="${reputations[i].value}" id="reputation|${reputations[i].value}" onclick="ui.markReputationTracker(this)">${reputations[i].text}</td>`);
+                            document.write(`<td class="can-active" style="width: 6.6%" data-value="${reputations[i].value}" id="reputation|${reputations[i].value}" onclick="app.markReputationTracker(this)">${reputations[i].text}</td>`);
                         }
                         document.write('</tr>');
                     </script>
@@ -209,16 +295,16 @@
                     <tr>
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+2)">
+                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+2)">
                                     +2
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+3)">
+                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+3)">
                                     +3
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+4)">
+                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+4)">
                                     +4
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="ui.updateFame(+5)">
+                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+5)">
                                     +5
                                 </button>
                             </div>
@@ -234,7 +320,7 @@
                                 document.write('<td style="font-size: 20px">▯▭</td>');
                             }
                             for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
-                                document.write(`<td class="can-active" id="fame|${number}" onclick="ui.markFameTracker(this)">${number}</td>`);
+                                document.write(`<td class="can-active" id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
                                 number++;
                             }
                             document.write('</tr>');
@@ -252,227 +338,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="../../mage-knight-table/code/app-state.js"></script>
+<script type="text/javascript" src="../../mage-knight-table/code/mk-dummy.js"></script>
 <script>
-    let Strings = Object.freeze({
-        StorageAppStateKey: "app-state"
-    });
+    let app = new AppState()
+    app.initialize()
 
-
-
-    function UIContext() {
-
-        this.dayScore = null
-        this.nightScore = null
-        this.dayMovePoints = null
-        this.nightMovePoints = null
-        this.logs = null
-        this.date = null
-        this.currentReputation = null
-        this.currentFame = null
-        this.currentPeriod = null
-        this.state = null
-
-        this.emptyState = {
-            night: {
-                active: false,
-                count: 0
-            },
-            day: {
-                active: true,
-                count: 1
-            },
-            reputation: {
-                text: "0",
-                value: 0
-            },
-            fame: 0,
-            logs: ""
-        }
-
-        this.supports_html5_storage = function() {
-            try {
-                return 'localStorage' in window && window['localStorage'] !== null
-            } catch (e) {
-                return false
-            }
-        }
-
-        this.save = function () {
-            if (this.supports_html5_storage())
-                localStorage.setItem(Strings.StorageAppStateKey, JSON.stringify(this.state))
-        }
-
-        this.getSavedState = function () {
-            if (this.supports_html5_storage()){
-                return JSON.parse(localStorage.getItem(Strings.StorageAppStateKey))
-            }else{
-                return null;
-            }
-        }
-
-        this.initialize = function () {
-
-            this.state = this.getSavedState() ?? this.emptyState
-
-            this.currentReputation = document.getElementById(`reputation|${this.state.reputation.value}`)
-            this.currentFame = document.getElementById(`fame|${this.state.fame}`)
-
-            this.date = new Date()
-            this.logs = document.getElementById('logs')
-            this.logs.innerHTML = this.state.logs
-
-            this.currentPeriod = this.state.day.active ? document.getElementById('day-score') : document.getElementById('night-score')
-
-            this.dayScore = document.getElementById('day-score')
-            this.dayMovePoints = document.getElementById('day-move-points')
-
-            this.nightScore = document.getElementById('night-score')
-            this.nightMovePoints = document.getElementById('night-move-points')
-
-            if (this.state.day.active)
-                this.day()
-
-            if (this.state.night.active)
-                this.night()
-
-            this.markReputationTracker(this.currentReputation)
-            this.markFameTracker(this.currentFame)
-
-            document.querySelectorAll('td .can-active').forEach(td => {
-                td.addEventListener('mouseover', function () {
-                    this.classList.add('table-active')
-                })
-                td.addEventListener('mouseout', function () {
-                    this.classList.remove('table-active')
-                })
-                td.addEventListener('click', function () {
-                    this.classList.remove('table-active')
-                })
-            })
-
-            $(".accordion-item").on("shown.bs.collapse", function () {
-                var selected = $(this)
-                var offcanvas = $('#canvasBody')
-                if (selected.offset().top + selected.height() > offcanvas.offset().top + offcanvas.height()) {
-                    var scrollTop = (selected.offset().top - offcanvas.offset().top + offcanvas.scrollTop()) - 10
-                    offcanvas.animate({scrollTop: scrollTop}, 500)
-                }
-            });
-
-        }
-
-        this.log = function (message) {
-            this.logs.insertAdjacentHTML('afterbegin', `<p>${this.date.toLocaleString()} - ${message}</p>`)
-            this.state.logs = this.logs.innerHTML
-        }
-
-        this.markReputationTracker = function (newReputationElement) {
-            this.addHighlight(newReputationElement)
-
-            if (this.currentReputation === newReputationElement) return
-
-            this.removeHighlight(this.currentReputation)
-
-            let increasesOrDecreases = parseInt(newReputationElement.dataset.value) < parseInt(this.currentReputation.dataset.value) ? '↓' : '↑';
-            this.log(`Reputation: ${this.currentReputation.textContent} → ${newReputationElement.textContent} ${increasesOrDecreases}`)
-
-            this.state.reputation = {text: newReputationElement.textContent, value: newReputationElement.dataset.value}
-            this.currentReputation = newReputationElement
-
-            this.save()
-        }
-
-        this.markFameTracker = function (newFameElement) {
-            this.addHighlight(newFameElement)
-
-            if (this.currentFame === newFameElement) return
-
-            this.removeHighlight(this.currentFame)
-
-            this.log(`Fame: ${this.currentFame.textContent} → ${newFameElement.textContent}`)
-
-            this.state.fame = newFameElement.textContent
-            this.currentFame = newFameElement
-
-            this.save()
-        }
-
-        this.show = function (element) {
-            if (element != null)
-                element.classList.remove("d-none")
-        }
-
-        this.hide = function (element) {
-            if (element != null)
-                element.classList.add("d-none")
-        }
-
-        this.addHighlight = function (element) {
-            if (element != null)
-                element.classList.add("bg-white", "text-dark")
-        }
-        this.removeHighlight = function (element) {
-            if (element != null)
-                element.classList.remove("bg-white", "text-dark")
-        }
-
-        this.night = function () {
-            this.state.night.active = true
-            this.addHighlight(this.nightScore)
-            this.removeHighlight(this.dayScore)
-
-            this.state.day.active = false
-            this.hide(this.dayMovePoints)
-            this.show(this.nightMovePoints)
-
-            if(this.currentPeriod === this.nightScore && this.logs.textContent.length > 0) return
-
-            this.log('The Night has begun')
-            this.currentPeriod = this.nightScore
-
-            this.save()
-        }
-
-        this.day = function () {
-            this.state.day.active = true
-            this.addHighlight(this.dayScore)
-            this.show(this.dayMovePoints)
-
-            this.state.night.active = false
-            this.removeHighlight(this.nightScore)
-            this.hide(this.nightMovePoints)
-
-           if(this.currentPeriod === this.dayScore && this.logs.textContent.length > 0) return
-
-            this.log('The Day has begun')
-            this.currentPeriod = this.dayScore
-
-            this.save()
-        }
-
-        this.updateReputation = function (number) {
-            let newReputationNumber = Number(this.state.reputation.value) + number
-            let newReputation = document.getElementById(`reputation|${newReputationNumber}`)
-
-            if (newReputation === null) return
-
-            this.markReputationTracker(newReputation)
-        }
-
-        this.updateFame = function (number) {
-            let newFameNumber = Number(this.state.fame) + number
-            let newFame = document.getElementById(`fame|${newFameNumber}`)
-
-            if (newFame === null) return
-
-            this.markFameTracker(newFame)
-        }
-
-    }
-
-    let ui = new UIContext()
-    ui.initialize()
-
+    let context = new UIContext();
 </script>
 </body>
 </html>

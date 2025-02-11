@@ -441,6 +441,9 @@ function UIContext()
     {
         that.initialize(this.index);
         that.showItemInItems(that.screen2, that.screens);
+
+        app.log("Dummy Player: " + that.characters[this.index].name);
+        app.save()
     }
 
     for (var i = 0; i < this.characterButtons.length; i++)
@@ -455,7 +458,10 @@ function UIContext()
     {
         console.log("adding crystal " + getColorString(this.colorTag));
         that.state.addCrystal(this.colorTag);
-        that.showItemInItems(that.screen4, that.screens);        
+        that.showItemInItems(that.screen4, that.screens);
+
+        app.log("Dummy Player - Added crystal: " + getColorString(this.colorTag));
+        app.save()
     }
 
     for (var i = 0; i < this.crystalButtons.length; i++)
@@ -472,6 +478,9 @@ function UIContext()
         that.state.addCard(this.colorTag);
         that.showItemInItems(that.screen2, that.screens);
         that.startNewRound();
+
+        app.log("Dummy Player - Added card: " + getColorString(this.colorTag));
+        app.save()
     }
 
     for (var i = 0; i < this.cardButtons.length; i++)
@@ -483,22 +492,4 @@ function UIContext()
 
     this.showItemInItems(this.screen1, this.screens);
     this.reloadFromSavedState();
-}
-
-function runTest()
-{
-    var ds = new DummyState({
-        name: "Deck Test",
-        deck: [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3],
-        crystals: [1,2,0,0]
-    });
-    ds.prepareDeck();
-
-    var turns = 1;
-    for (; !ds.isEndOfRound(); turns++)
-        ds.playTurn();
-
-    console.log("end of round in " + turns + " turns");
-
-    console.log(ds.toString());
 }
