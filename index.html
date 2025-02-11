@@ -350,7 +350,6 @@
             this.log(`Reputation: ${this.currentReputation.textContent} → ${newReputationElement.textContent} ${increasesOrDecreases}`)
 
             this.state.reputation = { text: newReputationElement.textContent, value: newReputationElement.dataset.value };
-            console.log(this.state.reputation)
             this.currentReputation = newReputationElement
         }
 
@@ -466,9 +465,6 @@
     this.reloadFromSavedState = function () {
         let saved = getSavedState();
     }
-
-
-
 
     let ui = new UIContext()
     ui.initialize(ui.emptyState)
