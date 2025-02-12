@@ -135,7 +135,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <iframe src="dummy_player.html" style="width: 100%; height: 100%;"></iframe> -->
                 </div>
             </div>
 
@@ -315,12 +314,17 @@
                         for (let row = 1; number <= 119; row++) {
                             document.write('<tr>');
                             if (row % 2 === 1) {
-                                document.write('<td style="font-size: 20px" ">⬡</td>');
+                                document.write('<td class="level-up" data-symbol="command-token" style="font-size: 20px" ">⬡</td>');
                             } else {
-                                document.write('<td style="font-size: 20px">▯▭</td>');
+                                document.write('<td class="level-up" data-symbol="skills" style="font-size: 20px">▯▭</td>');
                             }
                             for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
-                                document.write(`<td class="can-active" id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
+
+                                let levelUp = false
+                                if(col === 0) levelUp = true
+                                if(col === 0 && number === 0) levelUp = false
+
+                                document.write(`<td class="can-active" data-levelup=${levelUp} id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
                                 number++;
                             }
                             document.write('</tr>');

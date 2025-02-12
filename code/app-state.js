@@ -10,24 +10,27 @@ function AppState() {
     this.date = null
     this.currentReputation = null
     this.currentFame = null
-    this.currentPeriod = null
+    this.currentPeriodScore = null
     this.state = null
 
-    this.emptyState = {
+    this.defaultAppState = {
         night: {
             active: false,
             count: 0
         },
         day: {
             active: true,
-            count: 1
+            count: 0
         },
         reputation: {
             text: "0",
             value: 0
         },
         fame: 0,
-        logs: ""
+        logs: "",
+        turnState: {
+            reminders: ""
+        }
     }
 
     this.supports_html5_storage = function() {
@@ -53,7 +56,7 @@ function AppState() {
 
     this.initialize = function () {
 
-        this.state = this.getSavedState() ?? this.emptyState
+        this.state = this.getSavedState() ?? this.defaultAppState
 
         this.currentReputation = document.getElementById(`reputation|${this.state.reputation.value}`)
         this.currentFame = document.getElementById(`fame|${this.state.fame}`)
@@ -62,12 +65,14 @@ function AppState() {
         this.logs = document.getElementById('logs')
         this.logs.innerHTML = this.state.logs
 
-        this.currentPeriod = this.state.day.active ? document.getElementById('day-score') : document.getElementById('night-score')
+        this.currentPeriodScore = this.state.day.active === true ? document.getElementById('day-score') : document.getElementById('night-score')
 
         this.dayScore = document.getElementById('day-score')
+        this.dayScore.textContent = this.state.day.count
         this.dayMovePoints = document.getElementById('day-move-points')
 
         this.nightScore = document.getElementById('night-score')
+        this.nightScore.textContent = this.state.night.count
         this.nightMovePoints = document.getElementById('night-move-points')
 
         if (this.state.day.active)
@@ -135,6 +140,17 @@ function AppState() {
         this.state.fame = newFameElement.textContent
         this.currentFame = newFameElement
 
+        if(newFameElement.dataset.levelup === "true") {
+            let levelUpSymbolElement = newFameElement.previousElementSibling
+            this.log(`Level Up: ${levelUpSymbolElement.textContent}`)
+            this.state.turnState.reminders += `Level Up: ${levelUpSymbolElement.textContent}`
+        }
+
+        this.save()
+    }
+
+    this.clearTurnState = function () {
+        this.state.turnState.reminders = ""
         this.save()
     }
 
@@ -157,6 +173,16 @@ function AppState() {
             element.classList.remove("bg-white", "text-dark")
     }
 
+    this.increasesNightScore = function () {
+        this.state.night.count++
+        this.nightScore.textContent = this.state.night.count
+    }
+
+    this.increasesDayScore = function () {
+        this.state.day.count++
+        this.dayScore.textContent = this.state.day.count
+    }
+
     this.night = function () {
         this.state.night.active = true
         this.addHighlight(this.nightScore)
@@ -166,10 +192,13 @@ function AppState() {
         this.hide(this.dayMovePoints)
         this.show(this.nightMovePoints)
 
-        if(this.currentPeriod === this.nightScore && this.logs.textContent.length > 0) return
+        if(this.currentPeriodScore === this.nightScore && this.logs.textContent.length > 0){
+            return
+        }
 
         this.log('The Night has begun')
-        this.currentPeriod = this.nightScore
+        this.currentPeriodScore = this.nightScore
+        this.increasesNightScore()
 
         this.save()
     }
@@ -183,10 +212,13 @@ function AppState() {
         this.removeHighlight(this.nightScore)
         this.hide(this.nightMovePoints)
 
-        if(this.currentPeriod === this.dayScore && this.logs.textContent.length > 0) return
+        if(this.currentPeriodScore === this.dayScore && this.logs.textContent.length > 0){
+            return
+        }
 
         this.log('The Day has begun')
-        this.currentPeriod = this.dayScore
+        this.currentPeriodScore = this.dayScore
+        this.increasesDayScore()
 
         this.save()
     }
