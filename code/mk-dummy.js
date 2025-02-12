@@ -398,6 +398,8 @@ function UIContext()
             for (var c of drawn)
                 that.addCardHistory(c, turnContainer);
 
+            app.log(`Dummy Player - Played turn - ${that.state.getRemainingCardCount()} cards remaining`);
+            app.save()
             that.updateTurnUI();
         }
         else
@@ -409,6 +411,9 @@ function UIContext()
     this.endRoundButton.onclick = function()
     {
         that.showItemInItems(that.screen3, that.screens);
+        app.log("Dummy Player - End of Round");
+        app.changePeriod()
+        app.save()
     }
 
     this.resetButton.onclick = function()
@@ -442,7 +447,7 @@ function UIContext()
         that.initialize(this.index);
         that.showItemInItems(that.screen2, that.screens);
 
-        app.log("Dummy Player: " + that.characters[this.index].name);
+        app.log("Dummy Player - " + that.characters[this.index].name);
         app.save()
     }
 
@@ -460,7 +465,7 @@ function UIContext()
         that.state.addCrystal(this.colorTag);
         that.showItemInItems(that.screen4, that.screens);
 
-        app.log("Dummy Player - Added crystal: " + getColorString(this.colorTag));
+        app.log(`Dummy Player - Added ${getColorString(this.colorTag)} crystal`);
         app.save()
     }
 
@@ -479,7 +484,7 @@ function UIContext()
         that.showItemInItems(that.screen2, that.screens);
         that.startNewRound();
 
-        app.log("Dummy Player - Added card: " + getColorString(this.colorTag));
+        app.log(`Dummy Player - Added ${getColorString(this.colorTag)} card`);
         app.save()
     }
 

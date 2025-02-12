@@ -183,6 +183,13 @@ function AppState() {
         this.dayScore.textContent = this.state.day.count
     }
 
+    this.changePeriod = function () {
+        if (this.state.day.active)
+            this.night()
+        else
+            this.day()
+    }
+
     this.night = function () {
         this.state.night.active = true
         this.addHighlight(this.nightScore)
