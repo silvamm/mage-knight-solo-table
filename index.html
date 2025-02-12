@@ -26,15 +26,15 @@
     <div class="row mb-3">
         <div class="text-white">fix: fame score bug and feat: tactical cards</div>
         <div class="col">
-            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+            <button class="app-btn" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#referencesOffcanvas" aria-controls="referencesOffcanvas">
                 References
             </button>
-            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+            <button class="app-btn" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#logsOffcanvas" aria-controls="logsOffcanvas">
                 Logs
             </button>
-            <button class="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas"
+            <button class="app-btn" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#dummyPlayerOffcanvas" aria-controls="dummyPlayerOffcanvas">
                 Dummy Player
             </button>
@@ -57,25 +57,25 @@
                             <div id="screen1">
                                 <div>Select a character</div>
                                 <div id="character-select">
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char1" title="Norowas">Norowas</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char2" title="Tovak">Tovak</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char3" title="Goldyx">Goldyx</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char4" title="Arythea">Arythea</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char5" title="Wolfhawk">Wolfhawk</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char6" title="Braevalar">Braevalar</div>
                                     </button>
-                                    <button class="btn btn-dark rounded-0">
+                                    <button class="app-btn">
                                         <div id="char7" title="Krang">Krang</div>
                                     </button>
                                 </div>
@@ -108,28 +108,28 @@
                                     </div>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button class="btn btn-dark rounded-0" id="play-turn-button" title="Play Turn">PLAY TURN</button>
-                                    <button class="btn btn-dark rounded-0" id="end-round-button" title="End Round">END ROUND</button>
+                                    <button class="app-btn" id="play-turn-button" title="Play Turn">PLAY TURN</button>
+                                    <button class="app-btn" id="end-round-button" title="End Round">END ROUND</button>
                                 </div>
                             </div>
                             <div id="screen3">
                                 <h1>Add Mana Crystal</h1>
                                 <div>Choose a crystal to add.</div>
                                 <div id="new-crystal-select">
-                                    <div id="new-mana-red" class="btn btn-dark rounded-0 red-crystal" title="Red"></div>
-                                    <div id="new-mana-green" class="btn btn-dark rounded-0 green-crystal" title="Green"></div>
-                                    <div id="new-mana-blue" class="btn btn-dark rounded-0 blue-crystal" title="Blue"></div>
-                                    <div id="new-mana-white" class="btn btn-dark rounded-0 white-crystal" title="White"></div>
+                                    <div id="new-mana-red" class="app-btn red-crystal" title="Red"></div>
+                                    <div id="new-mana-green" class="app-btn green-crystal" title="Green"></div>
+                                    <div id="new-mana-blue" class="app-btn blue-crystal" title="Blue"></div>
+                                    <div id="new-mana-white" class="app-btn white-crystal" title="White"></div>
                                 </div>
                             </div>
                             <div id="screen4">
                                 <h1>Add New Card</h1>
                                 <div>Choose a card to add.</div>
                                 <div id="new-card-select">
-                                    <div id="new-card-red" class="btn btn-dark rounded-0 red-card" title="Red"></div>
-                                    <div id="new-card-green" class="btn btn-dark rounded-0 green-card" title="Green"></div>
-                                    <div id="new-card-blue" class="btn btn-dark rounded-0 blue-card" title="Blue"></div>
-                                    <div id="new-card-white" class="btn btn-dark rounded-0 white-card" title="White"></div>
+                                    <div id="new-card-red" class="app-btn red-card" title="Red"></div>
+                                    <div id="new-card-green" class="app-btn green-card" title="Green"></div>
+                                    <div id="new-card-blue" class="app-btn blue-card" title="Blue"></div>
+                                    <div id="new-card-white" class="app-btn white-card" title="White"></div>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                                 document.write(`
                                       <div class="accordion-item bg-dark">
                                             <h2 class="">
-                                                <button class="collapsed btn btn-dark bg-dark text-white text-start" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                                <button class="collapsed bg-dark text-white text-start app-btn" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
                                                     ${capitalize}
                                                 </button>
                                             </h2>
@@ -242,10 +242,10 @@
                     <tr>
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-dark rounded-0"
+                                <button type="button" class="app-btn"
                                         onclick="app.updateReputation(-1)">-1
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0"
+                                <button type="button" class="app-btn"
                                         onclick="app.updateReputation(+1)">+1
                                 </button>
                             </div>
@@ -293,16 +293,16 @@
                     <tr>
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+2)">
+                                <button type="button" class="app-btn" onclick="app.updateFame(+2)">
                                     +2
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+3)">
+                                <button type="button" class="app-btn" onclick="app.updateFame(+3)">
                                     +3
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+4)">
+                                <button type="button" class="app-btn" onclick="app.updateFame(+4)">
                                     +4
                                 </button>
-                                <button type="button" class="btn btn-dark rounded-0" onclick="app.updateFame(+5)">
+                                <button type="button" class="app-btn" onclick="app.updateFame(+5)">
                                     +5
                                 </button>
                             </div>

@@ -27,10 +27,7 @@ function AppState() {
             value: 0
         },
         fame: 0,
-        logs: "",
-        turnState: {
-            reminders: ""
-        }
+        logs: ""
     }
 
     this.supports_html5_storage = function() {
@@ -55,6 +52,7 @@ function AppState() {
     }
 
     this.initialize = function () {
+        this.initializeEffects()
 
         this.state = this.getSavedState() ?? this.defaultAppState
 
@@ -84,6 +82,9 @@ function AppState() {
         this.markReputationTracker(this.currentReputation)
         this.markFameTracker(this.currentFame)
 
+    }
+
+    this.initializeEffects = function () {
         document.querySelectorAll('td .can-active').forEach(td => {
             td.addEventListener('mouseover', function () {
                 this.classList.add('table-active')
@@ -105,6 +106,9 @@ function AppState() {
             }
         });
 
+        document.querySelectorAll('.app-btn').forEach(btn => {
+            btn.classList.add('btn', 'btn-dark', 'rounded-0');
+        });
     }
 
     this.log = function (message) {
