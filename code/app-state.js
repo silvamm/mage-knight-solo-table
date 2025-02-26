@@ -7,6 +7,7 @@ function AppState() {
     this.dayMovePoints = null
     this.nightMovePoints = null
     this.logs = null
+    this.reminders = null
     this.date = null
     this.currentReputation = null
     this.currentFame = null
@@ -27,7 +28,9 @@ function AppState() {
             value: 0
         },
         fame: 0,
-        logs: ""
+        logs: "",
+        reminders: "",
+        level: 1
     }
 
     this.supports_html5_storage = function() {
@@ -62,6 +65,9 @@ function AppState() {
         this.date = new Date()
         this.logs = document.getElementById('logs')
         this.logs.innerHTML = this.state.logs
+
+        this.reminders = document.getElementById('reminders')
+        this.reminders.innerHTML = this.state.reminders
 
         this.currentPeriodScore = this.state.day.active === true ? document.getElementById('day-score') : document.getElementById('night-score')
 
@@ -115,6 +121,10 @@ function AppState() {
         this.logs.insertAdjacentHTML('afterbegin', `<p>${this.date.toLocaleString()} - ${message}</p>`)
         this.state.logs = this.logs.innerHTML
     }
+    this.reminder = function (message) {
+        this.reminders.insertAdjacentHTML('afterbegin', `<p>${message}</p>`)
+        this.state.reminders = this.reminders.innerHTML
+    }
 
     this.markReputationTracker = function (newReputationElement) {
         this.addHighlight(newReputationElement)
@@ -139,22 +149,31 @@ function AppState() {
 
         this.removeHighlight(this.currentFame)
 
-        this.log(`Fame: ${this.currentFame.textContent} → ${newFameElement.textContent}`)
+        let increases = parseInt(newFameElement.textContent) - parseInt(this.currentFame.textContent)
+        increases = increases < 0 ? increases * - 1 : increases
+        let increasesOrDecreases = parseInt(newFameElement.textContent) < parseInt(this.currentFame.textContent) ? '↓' : '↑';
+        let origin = this.currentFame.textContent
+        let destiny = newFameElement.textContent
 
         this.state.fame = newFameElement.textContent
         this.currentFame = newFameElement
 
-        if(newFameElement.dataset.levelup === "true") {
-            let levelUpSymbolElement = newFameElement.previousElementSibling
-            this.log(`Level Up: ${levelUpSymbolElement.textContent}`)
-            this.state.turnState.reminders += `Level Up: ${levelUpSymbolElement.textContent}`
+        if(this.currentFame.dataset.leveluprow > this.state.level){
+            let levelUpSymbolElement = document.querySelector(`.level-up-symbol[data-leveluprow="${this.currentFame.dataset.leveluprow}"]`)
+            this.log(`Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases} - Level Up: ${levelUpSymbolElement.textContent}`)
+
+            this.reminder(`Level Up: ${levelUpSymbolElement.textContent}`)
+            this.state.level = this.currentFame.dataset.leveluprow
+        }else{
+            this.log(`Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases}`)
         }
 
         this.save()
     }
 
-    this.clearTurnState = function () {
-        this.state.turnState.reminders = ""
+    this.clearReminders = function () {
+        this.state.reminders = ""
+        this.reminders.innerHTML = this.state.reminders
         this.save()
     }
 

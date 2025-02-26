@@ -24,7 +24,7 @@
 
 <div class="container text-center">
     <div class="row mb-3">
-        <div class="text-white">fix: fame score bug, feat: tactical cards, fix: change dummy class name, fix: change screen and char id names in dummy app</div>
+
         <div class="col">
             <button class="app-btn" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#referencesOffcanvas" aria-controls="referencesOffcanvas">
@@ -143,10 +143,37 @@
                 <div id="canvasBody" class="offcanvas-body ">
                     <div class="accordion accordion-flush " id="accordionReferences">
                         <script>
-                            let references = ['ancient_ruins', 'city', 'draconum', 'dungeon', 'end_turn', 'glade', 'grounds', 'keep', 'mage_tower', 'mines', 'monastery', 'monster_den', 'orcs', 'round', 'tomb', 'village']
+                            let references = [
+                                'ancient_ruins',
+                                'city',
+                                'combat',
+                                'crystal_mines',
+                                'enemy_abilities_-_defensive',
+                                'enemy_abilities_-_ofensive',
+                                'draconum',
+                                'dungeon',
+                                'end_turn',
+                                'glade',
+                                'grounds',
+                                'keep',
+                                'mage_tower',
+                                'magical_glade',
+                                'monastery',
+                                'monster_den',
+                                'orcs',
+                                'round',
+                                'skills_-_Arythea',
+                                'skills_-_Goldyx',
+                                'skills_-_Norowas',
+                                'skills_-_Tovak',
+                                'spawning_grounds',
+                                'tomb',
+                                'village'
+                            ]
+
                             let i = 1
                             references.forEach(reference => {
-                                reference_without_underscore = reference.replace('_', ' ')
+                                reference_without_underscore = reference.replaceAll('_', ' ')
                                 capitalize = reference_without_underscore.charAt(0).toUpperCase() + reference_without_underscore.slice(1)
                                 document.write(`
                                       <div class="accordion-item bg-dark">
@@ -167,6 +194,14 @@
                         </script>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+             <div id="reminders" class="text-white app-btn" onclick="app.clearReminders()"></div>
+            <div class="text-white hidden">
+                <p>add new references, feat: tactical cards, fix: change dummy class name</p>
             </div>
         </div>
     </div>
@@ -248,6 +283,9 @@
                                 <button type="button" class="app-btn"
                                         onclick="app.updateReputation(+1)">+1
                                 </button>
+                                <button type="button" class="app-btn"
+                                        onclick="app.updateReputation(+2)">+2
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -305,6 +343,18 @@
                                 <button type="button" class="app-btn" onclick="app.updateFame(+5)">
                                     +5
                                 </button>
+                                <button type="button" class="app-btn" onclick="app.updateFame(+6)">
+                                    +6
+                                </button>
+                                <button type="button" class="app-btn" onclick="app.updateFame(+7)">
+                                    +7
+                                </button>
+                                <button type="button" class="app-btn" onclick="app.updateFame(+8)">
+                                    +8
+                                </button>
+                                <button type="button" class="app-btn" onclick="app.updateFame(+9)">
+                                    +9
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -313,17 +363,14 @@
                         for (let row = 1; number <= 119; row++) {
                             document.write('<tr>');
                             if (row % 2 === 1) {
-                                document.write('<td class="level-up" data-symbol="command-token" style="font-size: 20px" ">⬡</td>');
+                                document.write(`<td class="level-up-symbol" data-leveluprow=${row} data-symbol="command-token" style="font-size: 20px" ">⬡</td>`);
+
                             } else {
-                                document.write('<td class="level-up" data-symbol="skills" style="font-size: 20px">▯▭</td>');
+                                document.write(`<td class="level-up-symbol" data-leveluprow=${row} data-symbol="skills" style="font-size: 20px">▯▭</td>`);
                             }
                             for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
 
-                                let levelUp = false
-                                if(col === 0) levelUp = true
-                                if(col === 0 && number === 0) levelUp = false
-
-                                document.write(`<td class="can-active" data-levelup=${levelUp} id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
+                                document.write(`<td class="can-active" data-leveluprow=${row} id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
                                 number++;
                             }
                             document.write('</tr>');
