@@ -1,1 +1,1 @@
-# mage-knight-table
+# mage-knight-solo-table
