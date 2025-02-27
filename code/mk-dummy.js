@@ -64,6 +64,21 @@ function clearSavedState()
         localStorage.removeItem(String.StorageKey);
 }
 
+function resetDummyState()
+{
+    clearSavedState()
+    resetDummyScreen()
+}
+
+function resetDummyScreen()
+{
+    document.getElementById("screen1").classList.remove("hidden");
+    document.getElementById("screen2").classList.add("hidden");
+    document.getElementById("screen3").classList.add("hidden");
+    document.getElementById("screen4").classList.add("hidden");
+
+}
+
 
 function DummyState(character)
 {

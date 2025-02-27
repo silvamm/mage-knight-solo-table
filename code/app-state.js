@@ -13,6 +13,9 @@ function AppState() {
     this.currentFame = null
     this.currentPeriodScore = null
     this.state = null
+    this.resetButton = null
+
+    let that = this;
 
     this.defaultAppState = {
         night: {
@@ -58,6 +61,9 @@ function AppState() {
         this.initializeEffects()
 
         this.state = this.getSavedState() ?? this.defaultAppState
+
+        this.resetButton = document.getElementById('reset-table-button')
+        this.resetButton.onclick = this.resetTableButtonOnClick
 
         this.currentReputation = document.getElementById(`reputation|${this.state.reputation.value}`)
         this.currentFame = document.getElementById(`fame|${this.state.fame}`)
@@ -115,6 +121,22 @@ function AppState() {
         document.querySelectorAll('.app-btn').forEach(btn => {
             btn.classList.add('btn', 'btn-dark', 'rounded-0');
         });
+    }
+
+    this.resetTableButtonOnClick = function (){
+        if(!confirm("Are you sure?"))
+            return;
+
+        that.state = null
+
+        localStorage.removeItem(StorageAppStateKey)
+
+        that.removeHighlight(that.currentFame)
+        that.removeHighlight(that.currentPeriodScore)
+        that.removeHighlight(that.currentReputation)
+
+        resetDummyState()
+        that.initialize()
     }
 
     this.log = function (message) {
@@ -270,5 +292,6 @@ function AppState() {
 
         this.markFameTracker(newFame)
     }
+
 
 }
