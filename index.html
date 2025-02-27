@@ -206,7 +206,7 @@
     </div>
     <div class="row">
         <div class="col">
-             <div id="reminders" class="text-white app-btn" onclick="app.clearReminders()"></div>
+             <div id="reminders" class="text-white app-btn" onclick="tableState.clearReminders()"></div>
         </div>
     </div>
     <div class="row ">
@@ -282,13 +282,13 @@
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
                                 <button type="button" class="app-btn"
-                                        onclick="app.updateReputation(-1)">-1
+                                        onclick="tableState.updateReputation(-1)">-1
                                 </button>
                                 <button type="button" class="app-btn"
-                                        onclick="app.updateReputation(+1)">+1
+                                        onclick="tableState.updateReputation(+1)">+1
                                 </button>
                                 <button type="button" class="app-btn"
-                                        onclick="app.updateReputation(+2)">+2
+                                        onclick="tableState.updateReputation(+2)">+2
                                 </button>
                             </div>
                         </td>
@@ -313,7 +313,7 @@
                             {text: "+5", value: 7}
                         ];
                         for (let i = 0; i < reputations.length; i++) {
-                            document.write(`<td class="can-active" style="width: 6.6%" data-value="${reputations[i].value}" id="reputation|${reputations[i].value}" onclick="app.markReputationTracker(this)">${reputations[i].text}</td>`);
+                            document.write(`<td class="can-active" style="width: 6.6%" data-value="${reputations[i].value}" id="reputation|${reputations[i].value}" onclick="tableState.markReputationTracker(this)">${reputations[i].text}</td>`);
                         }
                         document.write('</tr>');
                     </script>
@@ -335,28 +335,28 @@
                     <tr>
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="app-btn" onclick="app.updateFame(+2)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+2)">
                                     +2
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+3)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+3)">
                                     +3
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+4)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+4)">
                                     +4
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+5)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+5)">
                                     +5
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+6)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+6)">
                                     +6
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+7)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+7)">
                                     +7
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+8)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+8)">
                                     +8
                                 </button>
-                                <button type="button" class="app-btn" onclick="app.updateFame(+9)">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+9)">
                                     +9
                                 </button>
                             </div>
@@ -374,7 +374,7 @@
                             }
                             for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
 
-                                document.write(`<td class="can-active" data-leveluprow=${row} id="fame|${number}" onclick="app.markFameTracker(this)">${number}</td>`);
+                                document.write(`<td class="can-active" data-leveluprow=${row} id="fame|${number}" onclick="tableState.markFameTracker(this)">${number}</td>`);
                                 number++;
                             }
                             document.write('</tr>');
@@ -392,12 +392,11 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-<script type="text/javascript" src="../../mage-knight-solo-table/code/app-state.js"></script>
 <script type="text/javascript" src="../../mage-knight-solo-table/code/mk-dummy.js"></script>
+<script type="text/javascript" src="../../mage-knight-solo-table/code/table-state.js"></script>
 <script>
-    let app = new AppState()
-    app.initialize()
+    let tableState = new TableState()
+    tableState.initialize()
 
     let context = new UIContext();
 </script>

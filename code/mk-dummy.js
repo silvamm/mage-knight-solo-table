@@ -47,7 +47,7 @@ function getSavedState()
 
     var saved = JSON.parse(localStorage.getItem(Strings.StorageKey));
 
-    if (saved.character === undefined)
+    if (saved === null || saved.character === null || saved.character === undefined)
         return null;
 
     var state = new DummyState({deck:[], crystals:[]});
@@ -62,12 +62,6 @@ function clearSavedState()
 {
     if (supports_html5_storage())
         localStorage.removeItem(String.StorageKey);
-}
-
-function resetDummyState()
-{
-    clearSavedState()
-    resetDummyScreen()
 }
 
 function resetDummyScreen()
@@ -413,8 +407,8 @@ function UIContext()
             for (var c of drawn)
                 that.addCardHistory(c, turnContainer);
 
-            app.log(`Dummy Player - Played turn - ${that.state.getRemainingCardCount()} cards remaining`);
-            app.save()
+            tableState.log(`Dummy Player - Played turn - ${that.state.getRemainingCardCount()} cards remaining`);
+            tableState.save()
             that.updateTurnUI();
         }
         else
@@ -426,9 +420,9 @@ function UIContext()
     this.endRoundButton.onclick = function()
     {
         that.showItemInItems(that.screen3, that.screens);
-        app.log("Dummy Player - End of Round");
-        app.changePeriod()
-        app.save()
+        tableState.log("Dummy Player - End of Round");
+        tableState.changePeriod()
+        tableState.save()
     }
 
     this.resetButton.onclick = function()
@@ -462,8 +456,8 @@ function UIContext()
         that.initialize(this.index);
         that.showItemInItems(that.screen2, that.screens);
 
-        app.log("Dummy Player - " + that.characters[this.index].name);
-        app.save()
+        tableState.log("Dummy Player - " + that.characters[this.index].name);
+        tableState.save()
     }
 
     for (var i = 0; i < this.characterButtons.length; i++)
@@ -480,8 +474,8 @@ function UIContext()
         that.state.addCrystal(this.colorTag);
         that.showItemInItems(that.screen4, that.screens);
 
-        app.log(`Dummy Player - Added ${getColorString(this.colorTag)} crystal`);
-        app.save()
+        tableState.log(`Dummy Player - Added ${getColorString(this.colorTag)} crystal`);
+        tableState.save()
     }
 
     for (var i = 0; i < this.crystalButtons.length; i++)
@@ -499,8 +493,8 @@ function UIContext()
         that.showItemInItems(that.screen2, that.screens);
         that.startNewRound();
 
-        app.log(`Dummy Player - Added ${getColorString(this.colorTag)} card`);
-        app.save()
+        tableState.log(`Dummy Player - Added ${getColorString(this.colorTag)} card`);
+        tableState.save()
     }
 
     for (var i = 0; i < this.cardButtons.length; i++)

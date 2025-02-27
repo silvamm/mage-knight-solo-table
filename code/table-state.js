@@ -1,6 +1,7 @@
-const StorageAppStateKey = "app-state"
+const StorageTableStateKey = "table-state"
+const StorageDummyPlayerKey = Strings.StorageKey
 
-function AppState() {
+function TableState() {
 
     this.dayScore = null
     this.nightScore = null
@@ -17,7 +18,7 @@ function AppState() {
 
     let that = this;
 
-    this.defaultAppState = {
+    this.defaultTableState = {
         night: {
             active: false,
             count: 0
@@ -46,12 +47,12 @@ function AppState() {
 
     this.save = function () {
         if (this.supports_html5_storage())
-            localStorage.setItem(StorageAppStateKey, JSON.stringify(this.state))
+            localStorage.setItem(StorageTableStateKey, JSON.stringify(this.state))
     }
 
-    this.getSavedState = function () {
+    this.getSavedTableState = function () {
         if (this.supports_html5_storage()){
-            return JSON.parse(localStorage.getItem(StorageAppStateKey))
+            return JSON.parse(localStorage.getItem(StorageTableStateKey))
         }else{
             return null;
         }
@@ -60,7 +61,7 @@ function AppState() {
     this.initialize = function () {
         this.initializeEffects()
 
-        this.state = this.getSavedState() ?? this.defaultAppState
+        this.state = this.getSavedTableState() ?? this.defaultTableState
 
         this.resetButton = document.getElementById('reset-table-button')
         this.resetButton.onclick = this.resetTableButtonOnClick
@@ -129,13 +130,15 @@ function AppState() {
 
         that.state = null
 
-        localStorage.removeItem(StorageAppStateKey)
+        localStorage.removeItem(StorageTableStateKey)
+
+        localStorage.removeItem(StorageDummyPlayerKey)
+        resetDummyScreen()
 
         that.removeHighlight(that.currentFame)
         that.removeHighlight(that.currentPeriodScore)
         that.removeHighlight(that.currentReputation)
 
-        resetDummyState()
         that.initialize()
     }
 
