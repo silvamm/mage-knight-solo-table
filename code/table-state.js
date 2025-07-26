@@ -140,6 +140,7 @@ function TableState() {
         that.removeHighlight(that.currentReputation)
 
         that.initialize()
+        window.location.reload();
     }
 
     this.log = function (message) {
