@@ -1,6 +1,8 @@
 const StorageTableStateKey = "table-state"
 const StorageDummyPlayerKey = Strings.StorageKey
 
+
+
 function TableState() {
 
     this.dayScore = null
@@ -12,6 +14,7 @@ function TableState() {
     this.currentReputation = null
     this.currentFame = null
     this.currentPeriodScore = null
+    this.currentTacticCard = null
     this.state = null
     this.resetButton = null
 
@@ -295,5 +298,44 @@ function TableState() {
         this.markFameTracker(newFame)
     }
 
+    this.selectTactic = function (tacticCardId) {
+        let tacticCard = document.getElementById(`${tacticCardId}`)
+        this.addHighlight(tacticCard)
+        let chooseBtn = document.getElementById(`choose-${tacticCardId}`)
+        this.show(chooseBtn)
+
+        if (this.currentTacticCard === tacticCard) return
+        this.removeHighlight(this.currentTacticCard)
+
+        if(this.currentTacticCard != null){
+            let id = this.currentTacticCard.id
+            let oldChooseBtn = document.getElementById(`choose-${id}`)
+            this.hide(oldChooseBtn)
+        }
+
+        //this.state.fame = newFameElement.textContent
+        this.currentTacticCard = tacticCard
+
+    }
+
+    this.updateTacticsCardsDisplay = function () {
+        const dayCards = document.getElementById('tactics-day-cards')
+        const nightCards = document.getElementById('tactics-night-cards')
+
+        if (this.state.day.active) {
+            this.show(dayCards)
+            this.hide(nightCards)
+        } else {
+            this.hide(dayCards)
+            this.show(nightCards)
+        }
+    }
+
+
+}
+
+// Initialize tactics cards functionality
+function initializeTacticsCards() {
+    // Handle card selection
 
 }
