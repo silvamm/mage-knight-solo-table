@@ -18,6 +18,10 @@
     .can-active {
         cursor: pointer;
     }
+
+    td.app-btn {
+        display: table-cell !important;
+    }
 </style>
 <body class="bg-dark">
 <h1></h1>
@@ -335,6 +339,9 @@
                     <tr>
                         <td colspan="99">
                             <div class="btn-group mb-3" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="app-btn" onclick="tableState.updateFame(+1)">
+                                    +1
+                                </button>
                                 <button type="button" class="app-btn" onclick="tableState.updateFame(+2)">
                                     +2
                                 </button>
@@ -374,7 +381,7 @@
                             }
                             for (let col = 0; col < 3 + (row - 1) * 2 && number <= 119; col++) {
 
-                                document.write(`<td class="can-active" data-leveluprow=${row} id="fame|${number}" onclick="tableState.markFameTracker(this)">${number}</td>`);
+                                document.write(`<td class="can-active app-btn" data-leveluprow=${row} id="fame|${number}" onclick="tableState.markFameTracker(this)">${number}</td>`);
                                 number++;
                             }
                             document.write('</tr>');
