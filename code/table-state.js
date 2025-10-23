@@ -343,6 +343,11 @@ function TableState() {
 
         this.state.tacticCards.current = tacticCardElement.id
         this.currentTacticCard = tacticCardElement
+
+        let cardTitle = this.currentTacticCard.querySelector('.card-title').textContent;
+        let cardHeader = this.currentTacticCard.querySelector('.card-header').textContent;
+        this.log(`Tactic card chose: ${cardHeader} - ${cardTitle}`)
+
         this.save()
     }
 
@@ -364,6 +369,9 @@ function TableState() {
     }
 
     this.chooseDummyTacticCard = function (){
+        if(!confirm("Are you sure?"))
+            return;
+
         let prefix = this.state.day.active ? 'day' : 'night';
         let allCards = [];
         for (let i = 1; i <= 6; i++) {
@@ -377,20 +385,21 @@ function TableState() {
             return !this.state.tacticCards.disabled.includes(cardId);
         });
 
-        console.log(availableCards);
-
         if (availableCards.length === 0) return
-
 
         let randomIndex = Math.floor(Math.random() * availableCards.length);
         let randomCardId = availableCards[randomIndex];
         let randomCard = document.getElementById(randomCardId);
 
-        console.log(randomCard);
         if (randomCard) {
             this.disableTacticCard(randomCard);
-            this.log(`Dummy Player - Tactic card: ${randomCardId}`);
+
+            let cardTitle = randomCard.querySelector('.card-title').textContent;
+            let cardHeader = randomCard.querySelector('.card-header').textContent;
+            this.log(`Dummy Player - Tactic card chose: ${cardHeader} - ${cardTitle}`);
         }
+
+        this.save()
 
     }
 
