@@ -147,19 +147,25 @@ function TableState() {
         if(!confirm("Are you sure?"))
             return;
 
-        that.state = null
+        // Fade out effect
+        document.body.classList.remove('loaded');
 
-        localStorage.removeItem(StorageTableStateKey)
+        // Wait for fade out animation to complete
+        setTimeout(function() {
+            that.state = null
 
-        localStorage.removeItem(StorageDummyPlayerKey)
-        resetDummyScreen()
+            localStorage.removeItem(StorageTableStateKey)
 
-        that.removeHighlight(that.currentFame)
-        that.removeHighlight(that.currentPeriodScore)
-        that.removeHighlight(that.currentReputation)
+            localStorage.removeItem(StorageDummyPlayerKey)
+            resetDummyScreen()
 
-        that.initialize()
-        window.location.reload();
+            that.removeHighlight(that.currentFame)
+            that.removeHighlight(that.currentPeriodScore)
+            that.removeHighlight(that.currentReputation)
+
+            that.initialize()
+            window.location.reload();
+        }, 1000); // Match the CSS transition time
     }
 
     this.log = function (message) {
@@ -273,6 +279,9 @@ function TableState() {
         this.show(this.tacticNightCards)
         this.hide(this.tacticDayCards)
 
+        document.body.classList.remove('day-period')
+        document.body.classList.add('night-period')
+
         if(this.currentPeriodScore === this.nightScore && this.logs.textContent.length > 0){
             return
         }
@@ -295,6 +304,9 @@ function TableState() {
 
         this.show(this.tacticDayCards)
         this.hide(this.tacticNightCards)
+
+        document.body.classList.add('day-period')
+        document.body.classList.remove('night-period')
 
         if(this.currentPeriodScore === this.dayScore && this.logs.textContent.length > 0){
             return
