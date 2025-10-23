@@ -15,6 +15,8 @@ function TableState() {
     this.currentFame = null
     this.currentPeriodScore = null
     this.currentTacticCard = null
+    this.tacticDayCards = null
+    this.tacticNightCards = null
     this.state = null
     this.resetButton = null
 
@@ -32,6 +34,10 @@ function TableState() {
         reputation: {
             text: "0",
             value: 0
+        },
+        tacticCards: {
+            current: "",
+            disabled : []
         },
         fame: 0,
         logs: "",
@@ -86,6 +92,18 @@ function TableState() {
         this.nightScore = document.getElementById('night-score')
         this.nightScore.textContent = this.state.night.count
         this.nightMovePoints = document.getElementById('night-move-points')
+
+        this.tacticDayCards = document.getElementById('tactic-day-cards')
+        this.tacticNightCards = document.getElementById('tactic-night-cards')
+        this.currentTacticCard = document.getElementById(`${this.state.tacticCards.current}`)
+        this.selectTactic(this.currentTacticCard)
+
+        this.state.tacticCards.disabled.forEach(tacticCardId => {
+            let tacticCard = document.getElementById(tacticCardId)
+            if (tacticCard) {
+                this.disableTacticCard(tacticCard)
+            }
+        })
 
         if (this.state.day.active)
             this.day()
@@ -238,6 +256,9 @@ function TableState() {
             this.night()
         else
             this.day()
+
+        this.disableTacticCard(this.currentTacticCard)
+        this.currentTacticCard = null
     }
 
     this.night = function () {
@@ -248,6 +269,9 @@ function TableState() {
         this.state.day.active = false
         this.hide(this.dayMovePoints)
         this.show(this.nightMovePoints)
+
+        this.show(this.tacticNightCards)
+        this.hide(this.tacticDayCards)
 
         if(this.currentPeriodScore === this.nightScore && this.logs.textContent.length > 0){
             return
@@ -268,6 +292,9 @@ function TableState() {
         this.state.night.active = false
         this.removeHighlight(this.nightScore)
         this.hide(this.nightMovePoints)
+
+        this.show(this.tacticDayCards)
+        this.hide(this.tacticNightCards)
 
         if(this.currentPeriodScore === this.dayScore && this.logs.textContent.length > 0){
             return
@@ -298,13 +325,14 @@ function TableState() {
         this.markFameTracker(newFame)
     }
 
-    this.selectTactic = function (tacticCardId) {
-        let tacticCard = document.getElementById(`${tacticCardId}`)
-        this.addHighlight(tacticCard)
-        let chooseBtn = document.getElementById(`choose-${tacticCardId}`)
+    this.selectTactic = function (tacticCardElement) {
+        if(tacticCardElement === null) return
+
+        this.addHighlight(tacticCardElement)
+        let chooseBtn = document.getElementById(`choose-${tacticCardElement.id}`)
         this.show(chooseBtn)
 
-        if (this.currentTacticCard === tacticCard) return
+        if (this.currentTacticCard === tacticCardElement) return
         this.removeHighlight(this.currentTacticCard)
 
         if(this.currentTacticCard != null){
@@ -313,29 +341,57 @@ function TableState() {
             this.hide(oldChooseBtn)
         }
 
-        //this.state.fame = newFameElement.textContent
-        this.currentTacticCard = tacticCard
-
+        this.state.tacticCards.current = tacticCardElement.id
+        this.currentTacticCard = tacticCardElement
+        this.save()
     }
 
-    this.updateTacticsCardsDisplay = function () {
-        const dayCards = document.getElementById('tactics-day-cards')
-        const nightCards = document.getElementById('tactics-night-cards')
+    this.disableTacticCard = function (tacticCardElement) {
+        if (this.currentTacticCard === null) return
 
-        if (this.state.day.active) {
-            this.show(dayCards)
-            this.hide(nightCards)
-        } else {
-            this.hide(dayCards)
-            this.show(nightCards)
+        tacticCardElement.classList.add('text-bg-secondary')
+        tacticCardElement.classList.remove('text-bg-dark')
+        tacticCardElement.removeAttribute('onclick')
+        tacticCardElement.classList.add('disabled')
+
+        this.removeHighlight(tacticCardElement)
+
+        let chooseBtn = document.getElementById(`choose-${tacticCardElement.id}`)
+        this.hide(chooseBtn)
+
+        this.state.tacticCards.disabled.push(tacticCardElement.id)
+        this.save()
+    }
+
+    this.chooseDummyTacticCard = function (){
+        let prefix = this.state.day.active ? 'day' : 'night';
+        let allCards = [];
+        for (let i = 1; i <= 6; i++) {
+            allCards.push(`${prefix}-${i}`);
         }
+
+        let availableCards = allCards.filter(cardId => {
+            if (cardId === this.currentTacticCard.id) {
+                return false;
+            }
+            return !this.state.tacticCards.disabled.includes(cardId);
+        });
+
+        console.log(availableCards);
+
+        if (availableCards.length === 0) return
+
+
+        let randomIndex = Math.floor(Math.random() * availableCards.length);
+        let randomCardId = availableCards[randomIndex];
+        let randomCard = document.getElementById(randomCardId);
+
+        console.log(randomCard);
+        if (randomCard) {
+            this.disableTacticCard(randomCard);
+            this.log(`Dummy Player - Tactic card: ${randomCardId}`);
+        }
+
     }
-
-
-}
-
-// Initialize tactics cards functionality
-function initializeTacticsCards() {
-    // Handle card selection
 
 }

@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col">
                     <button class="app-btn" type="button" data-bs-toggle="modal" data-bs-target="#tacticsCardsModal">
-                        Tactic Cards (WIP)
+                        Tactic Cards - Beta
                     </button>
                     <button class="app-btn" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#referencesOffcanvas" aria-controls="referencesOffcanvas">
@@ -404,126 +404,128 @@
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-dark rounded-0 ">
             <div class="modal-body ">
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-1" onclick="tableState.selectTactic('day-1')">
-                            <div class="card-header">Early Bird</div>
-                            <div class="card-body">
-                                <h5 class="card-title">1</h5>
-                                <button class="app-btn d-none" id="choose-day-1">Choose</button>
+                <div id="tactic-day-cards">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-1" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">Early Bird</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">1</h5>
+                                    <button class="app-btn d-none" id="choose-day-1" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-2" onclick="tableState.selectTactic('day-2')">
-                            <div class="card-header">Rethink</div>
-                            <div class="card-body">
-                                <h5 class="card-title">2</h5>
-                                <p class="card-text">Whe you take this Tactic, discard up to 3 cards (including Wounds) from your hand, then draw that many cards. Shuffle your discard pile back into your Deed deck.</p>
-                                <button class="app-btn d-none" id="choose-day-2">Choose</button>
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-2" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">Rethink</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">2</h5>
+                                    <p class="card-text">Whe you take this Tactic, discard up to 3 cards (including Wounds) from your hand, then draw that many cards. Shuffle your discard pile back into your Deed deck.</p>
+                                    <button class="app-btn d-none" id="choose-day-2" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-3" onclick="tableState.selectTactic('day-3')">
-                            <div class="card-header">Mana Steal</div>
-                            <div class="card-body">
-                                <h5 class="card-title">3</h5>
-                                <p class="card-text">When you take this Tactic, take one mana die of a basic color form the Source and put it on this card. You can use that mana on any of your turns this Day. If you do, reroll it at the end of that turn and return it to the Source.</p>
-                                <button class="app-btn d-none" id="choose-day-3">Choose</button>
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-3" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">Mana Steal</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">3</h5>
+                                    <p class="card-text">When you take this Tactic, take one mana die of a basic color form the Source and put it on this card. You can use that mana on any of your turns this Day. If you do, reroll it at the end of that turn and return it to the Source.</p>
+                                    <button class="app-btn d-none" id="choose-day-3" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-4" onclick="tableState.selectTactic('day-4')">
-                            <div class="card-header">Planning</div>
-                            <div class="card-body">
-                                <h5 class="card-title">4</h5>
-                                <p class="card-text">At the end of each turn, if you have at least two cards in your hand before you draw, draw up to your hand size and then draw an additional card.</p>
-                                <button class="app-btn d-none" id="choose-day-4">Choose</button>
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-4" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">Planning</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">4</h5>
+                                    <p class="card-text">At the end of each turn, if you have at least two cards in your hand before you draw, draw up to your hand size and then draw an additional card.</p>
+                                    <button class="app-btn d-none" id="choose-day-4" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-5" onclick="tableState.selectTactic('day-5')">
-                            <div class="card-header">Great Start</div>
-                            <div class="card-body">
-                                <h5 class="card-title">5</h5>
-                                <p class="card-text">When you take this Tactic, immediately draw 2 cards.</p>
-                                <button class="app-btn d-none" id="choose-day-5">Choose</button>
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-5" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">Great Start</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">5</h5>
+                                    <p class="card-text">When you take this Tactic, immediately draw 2 cards.</p>
+                                    <button class="app-btn d-none" id="choose-day-5" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-bg-dark app-btn h-100" id="day-6" onclick="tableState.selectTactic('day-6')">
-                            <div class="card-header">The Right Moment</div>
-                            <div class="card-body">
-                                <h5 class="card-title">6</h5>
-                                <p class="card-text">One time this Day during your turn, you can announce that you will take another turn immediately after this. If you do, flip this card face down.</p>
-                                <button class="app-btn d-none" id="choose-day-6">Choose</button>
+                        <div class="col-md-4">
+                            <div class="card text-bg-dark app-btn h-100" id="day-6" onclick="tableState.selectTactic(this)">
+                                <div class="card-header">The Right Moment</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">6</h5>
+                                    <p class="card-text">One time this Day during your turn, you can announce that you will take another turn immediately after this. If you do, flip this card face down.</p>
+                                    <button class="app-btn d-none" id="choose-day-6" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="tactics-night-cards">
+                <div id="tactic-night-cards">
                     <h6 class="text-center mb-3">Night Tactics</h6>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-1">
+                            <div class="card text-bg-dark app-btn h-100" id="night-1" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">From the dusk</div>
                                 <div class="card-body">
                                     <h5 class="card-title">1</h5>
-                                    <button class="app-btn d-none" id="choose-night-1">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-1" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-2">
+                            <div class="card text-bg-dark app-btn h-100" id="night-2" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Long night</div>
                                 <div class="card-body">
                                     <h5 class="card-title">2</h5>
                                     <p class="card-text">One time this Night, if your Deed deck is empty, you may shuffle your discard pile and put 3 cards at random back into your Deed deck. Then flip this card face down.</p>
-                                    <button class="app-btn d-none" id="choose-night-2">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-2" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-3">
+                            <div class="card text-bg-dark app-btn h-100" id="night-3" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Mana Search</div>
                                 <div class="card-body">
                                     <h5 class="card-title">3</h5>
                                     <p class="card-text">Once per turn, before you use mana from the Source, you may reroll up to two mana dice in the Source. When choosing dice to reroll, you must pick gold (depleted) dice first, if there are any.</p>
-                                    <button class="app-btn d-none" id="choose-night-3">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-3" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-4">
+                            <div class="card text-bg-dark app-btn h-100" id="night-4" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Midnight Medidation</div>
                                 <div class="card-body">
                                     <h5 class="card-title">4</h5>
                                     <p class="card-text">One time this Night, before any of your turns, you may shuffle up to 5 cards (including Wounds) from your hand back into your Deed deck and then draw that many cards. Then, flip this card face down.</p>
-                                    <button class="app-btn d-none" id="choose-night-4">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-4" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-5">
+                            <div class="card text-bg-dark app-btn h-100" id="night-5" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Preparation</div>
                                 <div class="card-body">
                                     <h5 class="card-title">5</h5>
                                     <p class="card-text">When you take this Tactic, search your deck for any one card and put it in your hand, then shuffle your deck.</p>
-                                    <button class="app-btn d-none" id="choose-night-5">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-5" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-6">
+                            <div class="card text-bg-dark app-btn h-100" id="night-6" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Sparing power</div>
                                 <div class="card-body">
                                     <h5 class="card-title">6</h5>
                                     <p class="card-text">Once before the start of each of your turns, choose one: Put the top card of your Deed deck face down under this card, or flip this card face down and put all Deed cards under it into your hand.</p>
-                                    <button class="app-btn d-none" id="choose-night-6">Choose</button>
+                                    <button class="app-btn d-none" id="choose-night-6" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
                                 </div>
                             </div>
                         </div>
@@ -545,8 +547,6 @@
     tableState.initialize()
 
     let context = new UIContext();
-
-    initializeTacticsCards();
 </script>
 </body>
 </html>
