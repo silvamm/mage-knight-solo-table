@@ -9,7 +9,6 @@ function TableState() {
     this.nightMovePoints = null
     this.logs = null
     this.reminders = null
-    this.date = null
     this.currentReputation = null
     this.currentFame = null
     this.currentPeriodScore = null
@@ -69,7 +68,6 @@ function TableState() {
         this.currentReputation = document.getElementById(`reputation|${this.state.reputation.value}`)
         this.currentFame = document.getElementById(`fame|${this.state.fame}`)
 
-        this.date = new Date()
         this.logs = document.getElementById('logs')
         this.logs.innerHTML = this.state.logs
 
@@ -144,7 +142,7 @@ function TableState() {
     }
 
     this.log = function (message) {
-        this.logs.insertAdjacentHTML('afterbegin', `<p>${this.date.toLocaleString()} - ${message}</p>`)
+        this.logs.insertAdjacentHTML('afterbegin', `<p>${new Date().toLocaleString()} - ${message}</p>`)
         this.state.logs = this.logs.innerHTML
     }
     this.reminder = function (message) {
