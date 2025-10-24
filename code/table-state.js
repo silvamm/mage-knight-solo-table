@@ -147,10 +147,8 @@ function TableState() {
         if(!confirm("Are you sure?"))
             return;
 
-        // Fade out effect
         document.body.classList.remove('loaded');
 
-        // Wait for fade out animation to complete
         setTimeout(function() {
             that.state = null
 
@@ -165,7 +163,7 @@ function TableState() {
 
             that.initialize()
             window.location.reload();
-        }, 1000); // Match the CSS transition time
+        }, 1000);
     }
 
     this.log = function (message) {
