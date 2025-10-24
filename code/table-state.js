@@ -413,4 +413,17 @@ function TableState() {
 
     }
 
+    this.endRound = function (){
+        if(!confirm("Are you sure? This will switch day and night and bring the dummy player to the screen to add crystals and cards. If you didn't choose the dummy player, the screen won't be changed."))
+            return;
+
+        if(context.state != null){
+            context.showItemInItems(context.screen3, context.screens);
+        }
+
+        tableState.log("Player - Ended the round");
+        tableState.changePeriod()
+        tableState.save()
+    }
+
 }

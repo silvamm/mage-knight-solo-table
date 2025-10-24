@@ -420,7 +420,7 @@ function UIContext()
     this.endRoundButton.onclick = function()
     {
         that.showItemInItems(that.screen3, that.screens);
-        tableState.log("Dummy Player - End of Round");
+        tableState.log("Dummy Player - Ended the round");
         tableState.changePeriod()
         tableState.save()
     }
