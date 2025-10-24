@@ -144,7 +144,7 @@ function TableState() {
     }
 
     this.resetTableButtonOnClick = function (){
-        if(!confirm("Are you sure?"))
+        if(!confirm("Are you sure? This will clear all board state"))
             return;
 
         document.body.classList.remove('loaded');
@@ -379,7 +379,7 @@ function TableState() {
     }
 
     this.chooseDummyTacticCard = function (){
-        if(!confirm("Are you sure?"))
+        if(!confirm("Are you sure? This will randomly choose a tactical card from the available ones for the Dummy Player"))
             return;
 
         let prefix = this.state.day.active ? 'day' : 'night';
