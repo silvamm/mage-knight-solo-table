@@ -171,8 +171,37 @@ function TableState() {
         this.state.logs = this.logs.innerHTML
     }
     this.reminder = function (message) {
-        this.reminders.insertAdjacentHTML('afterbegin', `<p>${message}</p>`)
-        this.state.reminders = this.reminders.innerHTML
+        let currentHeight = this.reminders.scrollHeight
+        this.reminders.style.height = currentHeight + 'px'
+        this.reminders.style.overflow = 'hidden'
+
+        let isFirstReminder = this.state.reminders === ""
+        if(isFirstReminder) {
+            this.reminders.insertAdjacentHTML('afterbegin', `<p>Reminders</p>`)
+        }
+
+        let reminderTitle = this.reminders.querySelector('p')
+        if(reminderTitle) {
+            reminderTitle.insertAdjacentHTML('afterend', `<p>${message}</p>`)
+        } else {
+            this.reminders.insertAdjacentHTML('afterbegin', `<p>${message}</p>`)
+        }
+
+        // Calcula a nova altura e anima
+        let newHeight = this.reminders.scrollHeight
+        this.reminders.style.transition = 'height 1s ease-in'
+
+        requestAnimationFrame(() => {
+            this.reminders.style.height = newHeight + 'px'
+
+            setTimeout(() => {
+                this.reminders.style.transition = ''
+                this.reminders.style.height = ''
+                this.reminders.style.overflow = ''
+                this.state.reminders = this.reminders.innerHTML
+                this.save()
+            }, 1000)
+        })
     }
 
     this.markReputationTracker = function (newReputationElement) {
@@ -209,9 +238,10 @@ function TableState() {
 
         if(this.currentFame.dataset.leveluprow > this.state.level){
             let levelUpSymbolElement = document.querySelector(`.level-up-symbol[data-leveluprow="${this.currentFame.dataset.leveluprow}"]`)
-            this.log(`Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases} - Level Up: ${levelUpSymbolElement.textContent}`)
+            let message = `Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases} - Level Up: ${levelUpSymbolElement.textContent}`
+            this.log(message)
 
-            this.reminder(`Level Up: ${levelUpSymbolElement.textContent}`)
+            this.reminder(message)
             this.state.level = this.currentFame.dataset.leveluprow
         }else{
             this.log(`Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases}`)
@@ -221,9 +251,23 @@ function TableState() {
     }
 
     this.clearReminders = function () {
-        this.state.reminders = ""
-        this.reminders.innerHTML = this.state.reminders
-        this.save()
+        let currentHeight = this.reminders.scrollHeight
+        this.reminders.style.height = currentHeight + 'px'
+        this.reminders.style.overflow = 'hidden'
+
+        this.reminders.offsetHeight
+
+        this.reminders.style.transition = 'height 1s ease-out'
+        this.reminders.style.height = '0px'
+
+        setTimeout(() => {
+            this.state.reminders = ""
+            this.reminders.innerHTML = ""
+            this.reminders.style.height = ''
+            this.reminders.style.overflow = ''
+            this.reminders.style.transition = ''
+            this.save()
+        }, 1000)
     }
 
     this.show = function (element) {
