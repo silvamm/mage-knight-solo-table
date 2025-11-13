@@ -23,6 +23,11 @@
         display: table-cell !important;
     }
 
+    .tactic-card:hover:not(.bg-white) {
+        opacity: 1;
+        background-color: #4d5154 !important;
+    }
+
     body::before {
         content: '';
         position: fixed;
@@ -454,12 +459,12 @@
 <div class="modal fade" id="tacticsCardsModal" tabindex="-1" aria-labelledby="tacticsCardsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content bg-dark rounded-0 ">
-            <div class="modal-body ">
+            <div class="modal-body">
                 <div id="tactic-day-cards">
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-1" onclick="tableState.selectTactic(this)">
-                                <div class="card-header">Early Bird</div>
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-1" onclick="tableState.selectTactic(this)">
+                                <div class="card-header ">Early Bird</div>
                                 <div class="card-body">
                                     <h5 class="card-title">1</h5>
                                     <button class="app-btn d-none" id="choose-day-1" onclick="tableState.chooseDummyTacticCard()">Choose Dummy Player Card</button>
@@ -467,7 +472,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-2" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-2" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Rethink</div>
                                 <div class="card-body">
                                     <h5 class="card-title">2</h5>
@@ -477,7 +482,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-3" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-3" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Mana Steal</div>
                                 <div class="card-body">
                                     <h5 class="card-title">3</h5>
@@ -487,7 +492,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-4" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-4" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Planning</div>
                                 <div class="card-body">
                                     <h5 class="card-title">4</h5>
@@ -497,7 +502,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-5" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-5" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Great Start</div>
                                 <div class="card-body">
                                     <h5 class="card-title">5</h5>
@@ -507,7 +512,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="day-6" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="day-6" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">The Right Moment</div>
                                 <div class="card-body">
                                     <h5 class="card-title">6</h5>
@@ -519,10 +524,9 @@
                     </div>
                 </div>
                 <div id="tactic-night-cards">
-                    <h6 class="text-center mb-3">Night Tactics</h6>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-1" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-1" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">From the dusk</div>
                                 <div class="card-body">
                                     <h5 class="card-title">1</h5>
@@ -531,7 +535,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-2" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-2" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Long night</div>
                                 <div class="card-body">
                                     <h5 class="card-title">2</h5>
@@ -541,7 +545,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-3" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-3" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Mana Search</div>
                                 <div class="card-body">
                                     <h5 class="card-title">3</h5>
@@ -551,7 +555,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-4" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-4" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Midnight Medidation</div>
                                 <div class="card-body">
                                     <h5 class="card-title">4</h5>
@@ -561,7 +565,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-5" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-5" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Preparation</div>
                                 <div class="card-body">
                                     <h5 class="card-title">5</h5>
@@ -571,7 +575,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card text-bg-dark app-btn h-100" id="night-6" onclick="tableState.selectTactic(this)">
+                            <div class="card text-bg-dark app-btn h-100 tactic-card" id="night-6" onclick="tableState.selectTactic(this)">
                                 <div class="card-header">Sparing power</div>
                                 <div class="card-body">
                                     <h5 class="card-title">6</h5>
