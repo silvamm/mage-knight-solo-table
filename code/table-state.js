@@ -242,11 +242,11 @@ function TableState() {
             this.log(message)
 
             this.reminder(message)
-            this.state.level = this.currentFame.dataset.leveluprow
         }else{
             this.log(`Fame: ${origin} → ${destiny} ${increasesOrDecreases} ${increases}`)
         }
 
+        this.state.level = this.currentFame.dataset.leveluprow
         this.save()
     }
 
