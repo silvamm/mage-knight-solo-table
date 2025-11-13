@@ -134,7 +134,7 @@ function TableState() {
             var offcanvas = $('#canvasBody')
             if (selected.offset().top + selected.height() > offcanvas.offset().top + offcanvas.height()) {
                 var scrollTop = (selected.offset().top - offcanvas.offset().top + offcanvas.scrollTop()) - 10
-                offcanvas.animate({scrollTop: scrollTop}, 500)
+                offcanvas.animate({scrollTop: scrollTop}, 1000)
             }
         });
 
