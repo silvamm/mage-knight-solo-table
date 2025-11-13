@@ -248,13 +248,15 @@
 
                             let i = 1
                             references.forEach(reference => {
-                                reference_without_underscore = reference.replaceAll('_', ' ')
-                                capitalize = reference_without_underscore.charAt(0).toUpperCase() + reference_without_underscore.slice(1)
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
                                 document.write(`
                                       <div class="accordion-item bg-dark">
                                             <h2 class="">
                                                 <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
-                                                    ${capitalize}
+                                                    ${referenceName}
                                                 </button>
                                             </h2>
                                             <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
