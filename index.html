@@ -216,43 +216,35 @@
                  id="referencesOffcanvas"
                  aria-labelledby="referencesOffcanvasLabel">
                 <div id="canvasBody" class="offcanvas-body ">
-                    <div class="accordion accordion-flush " id="accordionReferences">
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                            Fortified Sites
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordion_f">
                         <script>
-                            let references = [
-                                'ancient_ruins',
+                            let fortified_sites_references = [
                                 'city',
-                                'crystal_mines',
-
-                                'draconum',
-                                'dungeon',
-                                'magical_glade',
-                                'spawning_grounds',
                                 'keep',
-                                'mage_tower',
-                                'magical_glade',
-                                'monastery',
-                                'monster_den',
-                                'marauding_orcs',
-                                'spawning_grounds',
-                                'tomb',
-                                'village'
+                                'mage_tower'
                             ]
 
                             let i = 1
-                            references.forEach(reference => {
+                            fortified_sites_references.forEach(reference => {
                                 let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
                                 let words = referenceWithoutUnderscore.split(' ')
                                 let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                 let referenceName = capitalizedWords.join(' ')
+                                let collapseName = `collapse_f_${i}`
                                 let icon = 'icon_' + reference
                                 document.write(`
                                       <div class="accordion-item bg-dark">
                                             <h2 class="">
-                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseName}" aria-expanded="true" aria-controls="${collapseName}">
                                                     <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
                                                 </button>
                                             </h2>
-                                            <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
+                                            <div id="${collapseName}" class="accordion-collapse collapse" data-bs-parent="#accordion_f">
                                                 <div class="accordion-body">
                                                     <img src="references/${reference}.png" class="img-fluid" alt="">
                                                 </div>
@@ -261,6 +253,179 @@
                                     `)
                                 i++
                             })
+                        </script>
+                    </div>
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                            Adventure Sites
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordion_a">
+                        <script>
+                            let adventure_sites_references = [
+                                'ancient_ruins',
+                                'dungeon',
+                                'labyrinth',
+                                'maze',
+                                'monster_den',
+                                'spawning_grounds',
+                                'tomb'
+                            ]
+
+                            i = 1
+                            adventure_sites_references.forEach(reference => {
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
+                                let collapseName = `collapse_a_${i}`
+                                let icon = 'icon_' + reference
+                                document.write(`
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseName}" aria-expanded="true" aria-controls="${collapseName}">
+                                                    <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
+                                                </button>
+                                            </h2>
+                                            <div id="${collapseName}" class="accordion-collapse collapse" data-bs-parent="#accordion_a">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    `)
+                                i++
+                            })
+                        </script>
+                    </div>
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                            Inhabited Sites
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordion_i">
+                        <script>
+                            let inhabited_sites_references = [
+                                'monastery',
+                                'refugee_camp',
+                                'village'
+                            ]
+
+                            i = 1
+                            inhabited_sites_references.forEach(reference => {
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
+                                let collapseName = `collapse_i_${i}`
+                                let icon = 'icon_' + reference
+                                document.write(`
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseName}" aria-expanded="true" aria-controls="${collapseName}">
+                                                    <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
+                                                </button>
+                                            </h2>
+                                            <div id="${collapseName}" class="accordion-collapse collapse" data-bs-parent="#accordion_i">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    `)
+                                i++
+                            })
+
+                        </script>
+                    </div>
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                            Rampaging Enemies
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordion_r">
+                        <script>
+                            let rampaging_enemies_references = [
+                                'draconum',
+                                'marauding_orcs'
+                            ]
+
+                            i = 1
+                            rampaging_enemies_references.forEach(reference => {
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
+                                let collapseName = `collapse_r_${i}`
+                                let icon = 'icon_' + reference
+                                document.write(`
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseName}" aria-expanded="true" aria-controls="${collapseName}">
+                                                    <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
+                                                </button>
+                                            </h2>
+                                            <div id="${collapseName}" class="accordion-collapse collapse" data-bs-parent="#accordion_r">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    `)
+                                i++
+                            })
+
+                        </script>
+                    </div>
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                            Special Spaces
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordion_s">
+                        <script>
+
+                            let special_spaces_references = [
+                                'crystal_mines',
+                                'deep_mines',
+                                'magical_glade',
+                            ]
+
+                            i = 1
+                            special_spaces_references.forEach(reference => {
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
+                                let collapseName = `collapse_s_${i}`
+                                let icon = 'icon_' + reference
+                                document.write(`
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseName}" aria-expanded="true" aria-controls="${collapseName}">
+                                                    <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
+                                                </button>
+                                            </h2>
+                                            <div id="${collapseName}" class="accordion-collapse collapse" data-bs-parent="#accordion_s">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    `)
+                                i++
+                            })
+
+                        </script>
+                    </div>
+
+                    <div>
+                        <p class="bg-dark text-white text-center">
+                           Others
+                        </p>
+                    </div>
+                    <div class="accordion accordion-flush " id="accordionReferences">
+                        <script>
 
                             let other_references = [
                                 'combat',
@@ -274,6 +439,7 @@
                                 'skills_-_Tovak',
                             ]
 
+                            i = 1
                             other_references.forEach(reference => {
                                 let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
                                 let words = referenceWithoutUnderscore.split(' ')
