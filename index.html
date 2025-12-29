@@ -221,26 +221,18 @@
                             let references = [
                                 'ancient_ruins',
                                 'city',
-                                'combat',
                                 'crystal_mines',
-                                'enemy_abilities_-_defensive',
-                                'enemy_abilities_-_ofensive',
+
                                 'draconum',
                                 'dungeon',
-                                'end_turn',
-                                'glade',
-                                'grounds',
+                                'magical_glade',
+                                'spawning_grounds',
                                 'keep',
                                 'mage_tower',
                                 'magical_glade',
                                 'monastery',
                                 'monster_den',
-                                'orcs',
-                                'round',
-                                'skills_-_Arythea',
-                                'skills_-_Goldyx',
-                                'skills_-_Norowas',
-                                'skills_-_Tovak',
+                                'marauding_orcs',
                                 'spawning_grounds',
                                 'tomb',
                                 'village'
@@ -248,6 +240,42 @@
 
                             let i = 1
                             references.forEach(reference => {
+                                let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
+                                let words = referenceWithoutUnderscore.split(' ')
+                                let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                let referenceName = capitalizedWords.join(' ')
+                                let icon = 'icon_' + reference
+                                document.write(`
+                                      <div class="accordion-item bg-dark">
+                                            <h2 class="">
+                                                <button class="collapsed bg-dark text-white text-start app-btn selectable" style="width: 100%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                                                    <img src="references/${icon}.png" class="img-fluid" width="50" alt=""> ${referenceName}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse${i}" class="accordion-collapse collapse" data-bs-parent="#accordionReferences">
+                                                <div class="accordion-body">
+                                                    <img src="references/${reference}.png" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                      </div>
+                                    `)
+                                i++
+                            })
+
+                            let other_references = [
+                                'combat',
+                                'end_turn',
+                                'enemy_abilities_-_defensive',
+                                'enemy_abilities_-_ofensive',
+                                'round',
+                                'skills_-_Arythea',
+                                'skills_-_Goldyx',
+                                'skills_-_Norowas',
+                                'skills_-_Tovak',
+                            ]
+
+                            i = 1
+                            other_references.forEach(reference => {
                                 let referenceWithoutUnderscore = reference.replaceAll('_', ' ')
                                 let words = referenceWithoutUnderscore.split(' ')
                                 let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
