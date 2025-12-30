@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" href="content/icon.png"/>
     <link rel="icon" href="content/icon.png"/>
     <meta charset="UTF-8">
-    <title>Mage Knight Solo Table</title>
+    <title>Mage Knight - Solo Table</title>
     <link rel="stylesheet" type="text/css" href="../../mage-knight-solo-table/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../../mage-knight-solo-table/content/mk-dummy.css"/>
 </head>
@@ -277,6 +277,9 @@
                                 let words = referenceWithoutUnderscore.split(' ')
                                 let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                 let referenceName = capitalizedWords.join(' ')
+                                if( (reference === 'maze') || (reference === 'labyrinth') ) {
+                                    referenceName = referenceName + ' - WIP'
+                                }
                                 let collapseName = `collapse_a_${i}`
                                 let icon = 'icon_' + reference
                                 document.write(`
@@ -316,6 +319,9 @@
                                 let words = referenceWithoutUnderscore.split(' ')
                                 let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                 let referenceName = capitalizedWords.join(' ')
+                                if( (reference === 'refugee_camp') ) {
+                                    referenceName = referenceName + ' - WIP'
+                                }
                                 let collapseName = `collapse_i_${i}`
                                 let icon = 'icon_' + reference
                                 document.write(`
@@ -396,6 +402,9 @@
                                 let words = referenceWithoutUnderscore.split(' ')
                                 let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                 let referenceName = capitalizedWords.join(' ')
+                                if( (reference === 'deep_mines') ) {
+                                    referenceName = referenceName + ' - WIP'
+                                }
                                 let collapseName = `collapse_s_${i}`
                                 let icon = 'icon_' + reference
                                 document.write(`

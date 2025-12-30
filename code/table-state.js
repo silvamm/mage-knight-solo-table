@@ -166,10 +166,20 @@ function TableState() {
         }, 1000);
     }
 
-    this.log = function (message) {
-        this.logs.insertAdjacentHTML('afterbegin', `<p>${new Date().toLocaleString()} - ${message}</p>`)
+    this.log = function (message, date = true) {
+        if(date){
+            this.logs.insertAdjacentHTML('afterbegin', `<p>${new Date().toLocaleString()} - ${message}</p>`)
+        } else {
+            this.logs.insertAdjacentHTML('afterbegin', `<p>${message}</p>`)
+        }
         this.state.logs = this.logs.innerHTML
     }
+
+    this.line = function() {
+        this.logs.insertAdjacentHTML('afterbegin', `<p><hr></p>`)
+        this.state.logs = this.logs.innerHTML
+    }
+
     this.reminder = function (message) {
         let currentHeight = this.reminders.scrollHeight
         this.reminders.style.height = currentHeight + 'px'
@@ -328,9 +338,13 @@ function TableState() {
             return
         }
 
-        this.log('The Night has begun')
+
         this.currentPeriodScore = this.nightScore
         this.increasesNightScore()
+
+        this.line()
+        this.log(`Round ${this.state.day.count + this.state.night.count}`, false)
+        this.log('The Night has begun')
 
         this.save()
     }
@@ -354,9 +368,13 @@ function TableState() {
             return
         }
 
-        this.log('The Day has begun')
         this.currentPeriodScore = this.dayScore
         this.increasesDayScore()
+
+        let round = this.state.day.count + this.state.night.count
+        if(round > 1) this.line()
+        this.log(`Round ${round}`, false)
+        this.log('The Day has begun')
 
         this.save()
     }
