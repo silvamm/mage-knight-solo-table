@@ -253,3 +253,44 @@ h1 {
     text-align: center;
     font-size: 16pt;
 }
+
+/* Responsive offcanvas widths */
+/* Mobile: full width */
+@media (max-width: 767px) {
+    #referencesOffcanvas {
+        width: 80% !important;
+    }
+    #dummyPlayerOffcanvas {
+        width: 80% !important;
+    }
+}
+
+/* Tablet: larger widths */
+@media (min-width: 768px) and (max-width: 1199px) {
+    #referencesOffcanvas {
+        width: 60% !important;
+    }
+    #dummyPlayerOffcanvas {
+        width: 60% !important;
+    }
+}
+
+/* Desktop: even larger widths */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    #referencesOffcanvas {
+        width: 50% !important;
+    }
+    #dummyPlayerOffcanvas {
+        width: 50% !important;
+    }
+}
+
+/* Large Desktop: maximum comfortable widths */
+@media (min-width: 1600px) {
+    #referencesOffcanvas {
+        width: 40% !important;
+    }
+    #dummyPlayerOffcanvas {
+        width: 40% !important;
+    }
+}
