@@ -343,7 +343,7 @@ function TableState() {
         this.increasesNightScore()
 
         this.line()
-        this.log(`Round ${this.state.day.count + this.state.night.count}`, false)
+        this.log(`Round ${this.state.day.count + this.state.night.count} - Night ${this.state.night.count}`, false)
         this.log('The Night has begun')
 
         this.save()
@@ -373,7 +373,7 @@ function TableState() {
 
         let round = this.state.day.count + this.state.night.count
         if(round > 1) this.line()
-        this.log(`Round ${round}`, false)
+        this.log(`Round ${round} - Day ${this.state.day.count}`, false)
         this.log('The Day has begun')
 
         this.save()
