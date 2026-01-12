@@ -61,7 +61,7 @@ function getSavedState()
 function clearSavedState()
 {
     if (supports_html5_storage())
-        localStorage.removeItem(String.StorageKey);
+        localStorage.removeItem(Strings.StorageKey);
 }
 
 function resetDummyScreen()
